@@ -39,22 +39,23 @@ export default {
 <style lang="scss" scoped>
 .body {
   background-color: #FFEB33;
-  height: 100vh;
+  height: 100vh;  /** 화면에 꽉체게 설정 */
 }
 main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /** 수직으로 쌓이도록 설정 */
+  align-items: center;  /** 수직으로 중앙정렬 */
   margin: auto;
-  width: 40vw;
+  width: 50vw;
 
   .kakao__image {
-    margin: 10vh 0 30px;
+    margin: 10vh 0 0;
   }
 
   .sign-in__form {
-    width: 90%;
-    
+    width: 100%;
+    margin-top: 20px;
+
     .sign-in__id {
       input {
         width: 100%;
@@ -68,6 +69,7 @@ main {
       }
     }
     .sign-in__submit {
+      margin-top: 5px;
       button {
         width: 100%;
         height: 30px;  
@@ -75,6 +77,14 @@ main {
     }
     .auto-login {
       justify-content: flex-start;
+
+      input {
+        display: inline-block;  /** checkbox는 블락요소가 되어야 하는데 배치는 좌->우로 되야한다. */
+        margin: 0;
+      }
+      span {
+        font-size: 12px;
+      }
     }
   }
   
