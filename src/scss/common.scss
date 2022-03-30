@@ -3,11 +3,13 @@
 }
 
 button {
-  cursor: pointer;
+  &.active {
+    cursor: pointer;
+  }
 }
 
 a { 
-  text-decoration:none;
+  text-decoration: none;
 }
 
 .no-drag {
