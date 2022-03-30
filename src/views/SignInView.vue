@@ -2,7 +2,7 @@
   <div class="body">
     <main class="sign-in">
       <div class="kakao__image">
-        <img src="@/assets/logo.png" alt="kakao.png">
+        <img src="@/assets/kakaologo.png" alt="kakao.png">
       </div>
       <div class="sign-in__form">
         <div class="sign-in__id">
@@ -12,23 +12,27 @@
           <input type="password">
         </div>
         <div class="sign-in__submit">
-          <button class="submit">로그인</button>
+          <button class="submit active" type="button">로그인</button>
         </div>
-          <div class="auto-login">
-          <input type="checkbox">
-          <span>자동로그인</span>
+          <div class="auto-login no-drag">
+          <input type="checkbox" id="autoLogin">
+          <label for="autoLogin">자동로그인</label>
           <span class="material-icons">
             help_outline
           </span>
         </div>
+      </div>
+      <div class="check__message">
+        <p>카카오 계정 또는 비밀번호를 다시 확인해 주세요.</p>
       </div>
     </main>
   </div>
 </template>
 
 <script>
+
 export default {
-  date() {
+  data() {
     return {
       
     }
@@ -44,48 +48,75 @@ export default {
 main {
   display: flex;
   flex-direction: column; /** 수직으로 쌓이도록 설정 */
-  align-items: center;  /** 수직으로 중앙정렬 */
   margin: auto;
   width: 50vw;
+  font-size: 12px;
 
   .kakao__image {
-    margin: 10vh 0 0;
+    text-align: center;
+    margin: 120px 0 0;
+    img {
+       width: 120px;
+       height: 120px;
+    }
   }
 
   .sign-in__form {
     width: 100%;
-    margin-top: 20px;
-
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
     .sign-in__id {
       input {
         width: 100%;
-        height: 30px;  
+        height: 30px;
+        padding: 10px;
+        border-style: none;
       }
     }
     .sign-in__password {
+      margin-top: 1px;
       input {
         width: 100%;
-        height: 30px;  
+        height: 30px;
+        padding: 10px;
+        border-style: none; 
       }
     }
     .sign-in__submit {
       margin-top: 5px;
       button {
         width: 100%;
-        height: 30px;  
+        height: 35px;
+        background-color: #F6F6F6;
+        color: #C9ACAC;
+        border-style: none;
+        &.active{
+          cursor: pointer;
+          background-color: #423630;
+          color: white;
+        }
       }
     }
     .auto-login {
       justify-content: flex-start;
-
-      input {
-        display: inline-block;  /** checkbox는 블락요소가 되어야 하는데 배치는 좌->우로 되야한다. */
+      input[type='checkbox'] {
+        margin: 5px 0 0 0;
+        cursor: pointer;
+      }
+      label {
         margin: 0;
+        cursor: pointer;
       }
       span {
-        font-size: 12px;
+        margin-left: 2px;
+        cursor: pointer;
       }
     }
+  }
+  .check__message{
+    margin-top: 20px;
+    color: #FF753E;
   }
   
 }
