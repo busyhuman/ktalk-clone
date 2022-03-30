@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import SignIn from '@/views/SignInView';
+import friends from '@/views/FriendsView';
 import NotFound from '@/components/NotFound';
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ export const router = new VueRouter({
       name: 'signIn',
       path: '/signIn',
       component: SignIn
+    },
+    {
+      name: 'friends',
+      path: '/friends',
+      component: friends
     },
     { 
       path: '/:pathMatch(.*)*',
