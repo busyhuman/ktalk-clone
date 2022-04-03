@@ -29,6 +29,9 @@ export default {
   &:hover{
     background-color: #F8F8F8;
   }
+  &.active{
+    background-color: #F2F2F2;
+  }
   width: 100vw;
 }
 .main {

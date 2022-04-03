@@ -7,14 +7,18 @@
           친구
         </span>
         <div class="search">
-
+          <span class="material-icons-outlined">
+            search
+          </span>
         </div>
         <div class="friend-add">
-
+          <span class="material-icons-outlined">
+            person_add_alt_1
+          </span>
         </div>
       </header>
 
-      <section class="user">
+      <section class="user__profile">
         <div class="profile">
           <div class="profile__image">
             <img src="@/assets/kakaologo.png" alt="kakao.png">
@@ -78,14 +82,44 @@ export default {
   overflow-y: auto;
   padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
   .header {
+    display: flex;
     position: relative;
     left: 20px;
     .title {
       font-size: 36px;
       font-weight: 500;
     }
+
+    .search {
+      .material-icons-outlined {
+        display: block;
+        font-size: 36px;
+        position: absolute;
+        right: 90px;
+        
+        &:hover {
+          background-color: #F3F3F3;
+          border-radius: 100%;
+          cursor: pointer;
+        }
+      }
+    }
+    .friend-add {
+      .material-icons-outlined {
+        display: block;
+        font-size: 36px;
+        position: absolute;
+        right: 40px;
+        
+        &:hover {
+          background-color: #F3F3F3;
+          border-radius: 100%;
+          cursor: pointer;
+        }
+      }
+    }
   }
-  .user {
+  .user__profile {
     padding: 10px 20px;
     .profile {
       display: flex;

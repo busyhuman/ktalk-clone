@@ -13,19 +13,42 @@
       <div class="blocker">
 
       </div>
-      <span class="material-icons trans--120">
+      <span class="material-icons-outlined trans--120" @click="fnToggleAlarm()" v-if="toggle.alarm === true">
         notifications
+      </span>
+      <span class="material-icons-outlined trans--120" @click="fnToggleAlarm()" v-if="toggle.alarm === false">
+        notifications_off
       </span>
       <span class="material-icons-outlined trans--40">
         settings
       </span>
     </nav>
+    <component :is="componentName" />
   </div>
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus';
 export default {
+  components: {
+    Alarm: () => import('@/components/modal/AlarmModalComponent'),
+  },
+  data() {
+    return {
+      componentName: '',
+      toggle: {
+        alarm: true,
+      }
+    }
+  },
   
+  methods: {
+    fnToggleAlarm() {
+      this.componentName = 'Alarm'
+      this.toggle.alarm = !this.toggle.alarm
+      EventBus.$emit('ALARM', this.toggle.alarm)
+    }
+  }
 }
 </script>
 
