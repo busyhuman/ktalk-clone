@@ -1,12 +1,16 @@
 <template>
   <div class="container">
     <nav class="main">
-      <span class="material-icons mt--20">
-        person
-      </span>
-      <span class="material-icons-outlined mt--20">
-        chat
-      </span>
+      <router-link :to="{ path: '/friends' }">
+        <span class="material-icons mt--20">
+          person
+        </span>
+      </router-link>
+      <router-link :to="{ path: '/chat' }">
+        <span class="material-icons-outlined mt--20">
+          chat_bubble
+        </span>
+      </router-link>
       <span class="material-icons-outlined mt--20">
         more_horiz
       </span>
@@ -77,10 +81,18 @@ export default {
     &.trans--40 {
       position: absolute;
       bottom: 40px;
+      &:hover {
+        background-color: #E1E1E3;
+        border-radius: 100%;
+      }
     }
     &.trans--120 {
       position: absolute;
       bottom: 120px;
+      &:hover {
+        background-color: #E1E1E3;
+        border-radius: 100%;
+      }
     }
   }
   .material-icons {
@@ -97,10 +109,18 @@ export default {
     &.trans--40 {
       position: absolute;
       bottom: 40px;
+      &:hover {
+        background-color: #E1E1E3;
+        border-radius: 100%;
+      }
     }
     &.trans--120 {
       position: absolute;
       bottom: 120px;
+      &:hover {
+        background-color: #E1E1E3;
+        border-radius: 100%;
+      }
     }
   }
 }
