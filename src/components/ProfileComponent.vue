@@ -5,14 +5,14 @@
         <div class="profile__image">
           <img src="@/assets/kakaologo.png" alt="kakao.png">
         </div>
-        <div class="profile__textarea">
+        <section class="profile__textarea">
           <div class="profile__name">
             이장호
           </div>
           <div class="profile__hello">
             안녕하세용
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
@@ -32,7 +32,6 @@ export default {
   &.active{
     background-color: #F2F2F2;
   }
-  width: 100vw;
 }
 .main {
 
