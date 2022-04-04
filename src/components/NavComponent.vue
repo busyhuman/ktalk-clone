@@ -1,31 +1,35 @@
 <template>
   <div class="container">
     <nav class="main">
-      <router-link :to="{ path: '/friends' }">
-        <span class="material-icons mt--20">
+      <router-link :to="{ path: '/friends' }" class="friends">
+        <span class="material-icons-outlined">
           person
         </span>
       </router-link>
-      <router-link :to="{ path: '/chat' }">
-        <span class="material-icons-outlined mt--20">
+      <router-link :to="{ path: '/chat' }" class="chat">
+        <span class="material-icons-outlined">
           chat_bubble
         </span>
       </router-link>
-      <span class="material-icons-outlined mt--20">
-        more_horiz
-      </span>
-      <div class="blocker">
-
+      <router-link :to="{ path: '/more' }" class="more">
+        <span class="material-icons-outlined">
+          more_horiz
+        </span>
+      </router-link>
+      <div class="alarm">
+        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="toggle.alarm === true">
+          notifications
+        </span>
+        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="toggle.alarm === false">
+          notifications_off
+        </span>
       </div>
-      <span class="material-icons-outlined trans--120" @click="fnToggleAlarm()" v-if="toggle.alarm === true">
-        notifications
-      </span>
-      <span class="material-icons-outlined trans--120" @click="fnToggleAlarm()" v-if="toggle.alarm === false">
-        notifications_off
-      </span>
-      <span class="material-icons-outlined trans--40">
-        settings
-      </span>
+      <div class="settings">
+        <span class="material-icons-outlined" @click="fnToggleSetting()">
+          settings
+        </span>
+        <NormalList v-show="toggle.setting === true" class="normal__list" />
+      </div>
     </nav>
     <component :is="componentName" />
   </div>
@@ -33,15 +37,19 @@
 
 <script>
 import EventBus from '@/utils/eventBus';
+import NormalList from '@/components/NormalListComponent'
 export default {
   components: {
     Alarm: () => import('@/components/modal/AlarmModalComponent'),
+    NormalList,
   },
   data() {
+
     return {
       componentName: '',
       toggle: {
         alarm: true,
+        setting: false,
       }
     }
   },
@@ -51,6 +59,15 @@ export default {
       this.componentName = 'Alarm'
       this.toggle.alarm = !this.toggle.alarm
       EventBus.$emit('ALARM', this.toggle.alarm)
+    },
+
+    fnToggleSetting() {
+      this.toggle.setting = !this.toggle.setting;
+      console.log('NormalList')
+    },
+    
+    fnConsole() {
+      console.log('wowow');
     }
   }
 }
@@ -67,60 +84,125 @@ export default {
   height: 100vh;
   z-index: 100;
   position: fixed;
-  .material-icons-outlined {
+
+  .friends {
     display: flex;
-    width: inherit;
-    height: 80px;
-    font-size: 36px;
     justify-content: center;
-    align-items: center;
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 80px;
     cursor: pointer;
-    &.mt--20 {
-      margin-top: 20px;
+
+    .material-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
     }
-    &.trans--40 {
-      position: absolute;
-      bottom: 40px;
-      &:hover {
-        background-color: #E1E1E3;
-        border-radius: 100%;
-      }
+    .material-icons-outlined {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
     }
-    &.trans--120 {
-      position: absolute;
-      bottom: 120px;
+  }
+
+  .chat {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 80px;
+    cursor: pointer;
+
+    .material-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+    }
+    .material-icons-outlined {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+    }
+  }
+
+  .more {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 80px;
+    cursor: pointer;
+
+    .material-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+    }
+    .material-icons-outlined {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+    }
+  }
+
+  .alarm {
+    position: absolute;
+    bottom: 120px;
+    cursor: pointer;
+    .material-icons-outlined {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      padding: 5px;
       &:hover {
         background-color: #E1E1E3;
         border-radius: 100%;
       }
     }
   }
-  .material-icons {
-    display: flex;
-    width: inherit;
-    height: 80px;
-    font-size: 36px;
-    justify-content: center;
-    align-items: center;
+
+  .settings {
+    position: absolute;
+    bottom: 40px;
     cursor: pointer;
-    &.mt--20 {
-      margin-top: 20px;
-    }
-    &.trans--40 {
-      position: absolute;
-      bottom: 40px;
+
+    .material-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      padding: 5px;
       &:hover {
         background-color: #E1E1E3;
         border-radius: 100%;
       }
     }
-    &.trans--120 {
-      position: absolute;
-      bottom: 120px;
+    .material-icons-outlined {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      padding: 5px;
       &:hover {
         background-color: #E1E1E3;
         border-radius: 100%;
       }
+    }
+
+    .normal__list {
+      position: absolute;
+      left: 50px;
+      bottom: 10px;
     }
   }
 }
