@@ -81,6 +81,7 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
   padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
+  width: 100vw;
   .header {
     display: flex;
     position: relative;
