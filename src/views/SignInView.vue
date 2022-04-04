@@ -12,7 +12,7 @@
           <input type="password">
         </div>
         <div class="sign-in__submit">
-          <button class="submit active" type="button">로그인</button>
+          <button class="submit actv" type="button">로그인</button>
         </div>
           <div class="auto-login no-drag">
           <input type="checkbox" id="autoLogin">
@@ -91,7 +91,7 @@ main {
         background-color: #F6F6F6;
         color: #C9ACAC;
         border-style: none;
-        &.active{
+        &.actv{
           cursor: pointer;
           background-color: #423630;
           color: white;

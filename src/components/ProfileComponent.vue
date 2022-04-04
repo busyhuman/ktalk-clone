@@ -29,7 +29,7 @@ export default {
   &:hover{
     background-color: #F8F8F8;
   }
-  &.active{
+  &.actv{
     background-color: #F2F2F2;
   }
 }

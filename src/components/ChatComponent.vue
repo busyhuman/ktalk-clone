@@ -38,13 +38,14 @@ export default {
   &:hover{
     background-color: #F8F8F8;
   }
-  &.active{
+  &.actv{
     background-color: #F2F2F2;
   }
 }
 .main {
   width: 100%;
   padding: 10px 20px;
+  position: relative;
   .room {
     display: flex;
     align-items: center;
@@ -62,6 +63,7 @@ export default {
       flex-direction: column;
       align-items: flex-end;
       position: absolute;
+      top: 30px;
       right: 20px;
 
       .room__last__date {
