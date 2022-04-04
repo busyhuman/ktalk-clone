@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import SignIn from '@/views/SignInView';
+import signin from '@/views/SignInView';
 import friends from '@/views/FriendsView';
+import chat from '@/views/ChatView';
 import NotFound from '@/components/NotFound';
 Vue.use(VueRouter);
 
@@ -10,17 +11,22 @@ export const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/signIn',
+      redirect: '/signin',
     },
     {
       name: 'signIn',
-      path: '/signIn',
-      component: SignIn
+      path: '/signin',
+      component: signin
     },
     {
       name: 'friends',
       path: '/friends',
       component: friends
+    },
+    {
+      name: 'chat',
+      path: '/chat',
+      component: chat
     },
     { 
       path: '/:pathMatch(.*)*',
