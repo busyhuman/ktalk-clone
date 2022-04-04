@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import signin from '@/views/SignInView';
 import friends from '@/views/FriendsView';
 import chat from '@/views/ChatView';
+import more from '@/views/MoreView';
 import NotFound from '@/components/NotFound';
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ export const router = new VueRouter({
       name: 'chat',
       path: '/chat',
       component: chat
+    },
+    {
+      name: 'more',
+      path: '/more',
+      component: more
     },
     { 
       path: '/:pathMatch(.*)*',
