@@ -1,34 +1,34 @@
 <template>
-  <div class="container">
+  <div class="container" @click="fnResetToggle()">
     <nav class="main">
-      <router-link :to="{ path: '/friends' }" class="friends">
-        <span class="material-icons-outlined">
+      <router-link :to="{ path: '/friends' }" class="friends" :class="{ actv: selected === 'friends'}">
+        <span class="material-icons">
           person
         </span>
       </router-link>
-      <router-link :to="{ path: '/chat' }" class="chat">
-        <span class="material-icons-outlined">
+      <router-link :to="{ path: '/chats' }" class="chats" :class="{ actv: selected === 'chats'}">
+        <span class="material-icons">
           chat_bubble
         </span>
       </router-link>
-      <router-link :to="{ path: '/more' }" class="more">
-        <span class="material-icons-outlined">
+      <router-link :to="{ path: '/more' }" class="more" :class="{ actv: selected === 'more'}">
+        <span class="material-icons">
           more_horiz
         </span>
       </router-link>
       <div class="alarm">
-        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="toggle.alarm === true">
+        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="fnGetAlarm === true">
           notifications
         </span>
-        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="toggle.alarm === false">
+        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="fnGetAlarm === false">
           notifications_off
         </span>
       </div>
       <div class="settings">
-        <span class="material-icons-outlined" @click="fnToggleSetting()">
+        <span class="material-icons-outlined" @click.stop="fnToggleSetting()">
           settings
         </span>
-        <NormalList v-show="toggle.setting === true" class="normal__list" />
+        <NormalList v-show="fnGetSetting === true" class="normal__list" />
       </div>
     </nav>
     <component :is="componentName" />
@@ -43,31 +43,34 @@ export default {
     Alarm: () => import('@/components/modal/AlarmModalComponent'),
     NormalList,
   },
+  props: {
+    selected: String,
+  },
   data() {
-
     return {
       componentName: '',
-      toggle: {
-        alarm: true,
-        setting: false,
-      }
     }
   },
-  
+  computed: {
+    fnGetAlarm() {
+      return this.$store.state.toggle.alarm;
+    },
+    fnGetSetting() {
+      return this.$store.state.toggle.setting;
+    },
+  },
   methods: {
     fnToggleAlarm() {
       this.componentName = 'Alarm'
-      this.toggle.alarm = !this.toggle.alarm
-      EventBus.$emit('ALARM', this.toggle.alarm)
+      this.$store.state.toggle.alarm = !this.$store.state.toggle.alarm
+      EventBus.$emit('ALARM', this.$store.state.toggle.alarm)
     },
 
     fnToggleSetting() {
-      this.toggle.setting = !this.toggle.setting;
-      console.log('NormalList')
+      this.$store.state.toggle.setting = !this.$store.state.toggle.setting
     },
-    
-    fnConsole() {
-      console.log('wowow');
+    fnResetToggle() {
+      this.$store.state.toggle.setting = false;
     }
   }
 }
@@ -93,7 +96,13 @@ export default {
     width: 100%;
     height: 80px;
     cursor: pointer;
-
+    color: #ACADB1;
+    &.actv {
+      color: black;
+    }
+    &:hover:not(.actv) {
+      color: #909297;
+    }
     .material-icons {
       display: flex;
       justify-content: center;
@@ -108,7 +117,7 @@ export default {
     }
   }
 
-  .chat {
+  .chats {
     display: flex;
     justify-content: center;
     position: relative;
@@ -116,7 +125,13 @@ export default {
     width: 100%;
     height: 80px;
     cursor: pointer;
-
+    color: #ACADB1;
+    &.actv {
+      color: black;
+    }
+    &:hover:not(.actv) {
+      color: #909297;
+    }
     .material-icons {
       display: flex;
       justify-content: center;
@@ -139,18 +154,24 @@ export default {
     width: 100%;
     height: 80px;
     cursor: pointer;
-
+    color: #ACADB1;
+    &.actv {
+      color: black;
+    }
+    &:hover:not(.actv) {
+      color: #909297;
+    }
     .material-icons {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 36px;
+      font-size: 42px;
     }
     .material-icons-outlined {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 36px;
+      font-size: 42px;
     }
   }
 
