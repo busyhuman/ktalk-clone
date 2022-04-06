@@ -5,6 +5,10 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    temmp: []
+    toggle: {
+      alarm: true,
+      setting: false,
+      chatSort: false,
+    },
   }
 })
