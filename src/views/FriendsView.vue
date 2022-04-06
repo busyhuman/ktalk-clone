@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Nav />
+    <Nav selected="friends" />
     <div class="main">
       <header class="header">
         <span class="title">
@@ -39,17 +39,33 @@
           <span>^</span>
         </div>
         <div class="friend__container">
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
+          <div class="friend">
+            <Profile />
+          </div>
         </div>
 
       </section>
