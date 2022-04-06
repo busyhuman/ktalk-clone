@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Nav />
+    <Nav selected="more" />
     <div class="main">
       <header class="header">
         <span class="title">
