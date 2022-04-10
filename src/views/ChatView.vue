@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="fnResetToggle()">
+  <div class="chatview__container">
     <Nav selected="chats" />
     <div class="main" >
       <header class="header">
@@ -9,7 +9,10 @@
             ▼
           </span>
         </span>
-        <NormalList class="normal__list" v-show="fnGetChatSort"/>
+        <NormalList class="normal__list"
+        v-show="this.$store.state.toggle.chatSort" 
+        :params="normalList"
+        />
         <div class="search">
           <span class="material-icons-outlined">
             search
@@ -17,18 +20,12 @@
         </div>
       </header>
       <div class="chattings">
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
+        <div v-for="(item, index) in chatItems" :key="index">
+          <Chat :params="item.chatParams" />
+        </div>
       </div>
     </div>
+    <component :is="componentName" />
   </div>
 </template>
 
@@ -42,34 +39,106 @@ export default {
     Nav,
     Chat,
     NormalList,
+    Room: () => import('@/components/RoomComponent'),
   },
   data() {
     return {
-      // toggle: {
-      //   chatSort: false,
-      // }
-    }
-  },
+      componentName: '',
+      normalList: {
+        itemList: [
+          {
+            name: '최신 메시지 순'
+          },
+          {
+            name: '안 읽은 메시지 순'
+          },
+          {
+            name: '즐겨찾기 순'
+          },
+          {
+            name: '모두 읽음 처리'
+          }
+        ]
+      },
+      chatItems: [
+        {
+          chatParams: {
+            name: '현대건설',
+            headCount: 23,
+            index: 0,
+          }
+        },
+        {
+          chatParams: {
+            name: '산책방',
+            headCount: 12,
+            index: 1,
+          }
+        },
+        {
+          chatParams: {
+            name: '이장호',
+            headCount: 1,
+            index: 2,
+          }
+        },
+        {
+          chatParams: {
+            name: '권혁준',
+            headCount: 1,
+            index: 3,
+          }
+        },
+        {
+          chatParams: {
+            name: '배그',
+            headCount: 4,
+            index: 4,
+          }
+        },
+        {
+          chatParams: {
+            name: '코딩방',
+            headCount: 3,
+            index: 5,
+          }
+        },
+        {
+          chatParams: {
+            name: '강현대',
+            headCount: 1,
+            index: 6,
+          }
+        },
+        {
+          chatParams: {
+            name: '김준현',
+            headCount: 1,
+            index: 7,
+          }
+        },
+        {
+          chatParams: {
+            name: '호메방',
+            headCount: 9,
+            index: 8,
+          }
+        },
+      ]
 
-  computed: {
-    fnGetChatSort(){
-      return this.$store.state.toggle.chatSort;
     }
   },
   methods: {
     fnToggleChatSort() {
       this.$store.state.toggle.chatSort = !this.$store.state.toggle.chatSort
     },
-    fnResetToggle() {
-      console.log(process.env)
-      this.$store.state.toggle.chatSort = false;
-    }
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
+.chatview__container {
   display: flex;
 }
 .main {
@@ -104,7 +173,7 @@ export default {
         display: inline-block;
         font-size: 36px;
         position: absolute;
-        right: 90px;
+        right: 40px;
         padding: 5px;
         &:hover {
           background-color: #F3F3F3;

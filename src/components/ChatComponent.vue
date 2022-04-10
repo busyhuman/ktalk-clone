@@ -1,5 +1,7 @@
 <template>
-  <div class="container">
+  <div class="chatcomponent__container"
+  @dblclick="componentName = 'Room'"
+  >
     <div class="main">
       <div class="room">
         <div class="room__image">
@@ -8,8 +10,8 @@
         <section class="room__contents">
           <div class="room__title">
             <span class="room__type"></span>
-            <span class="room__name">현대건설</span>
-            <span class="room__member__count">28</span>
+            <span class="room__name">{{ params.name }}</span>
+            <span class="room__member__count" v-show="fnIsGroup">{{ params.headCount }}</span>
             <span class="alarm"></span>
           </div>
           <div class="room__last">
@@ -21,31 +23,56 @@
           </div>
         </section>
       </div>
-
     </div>
+    <component :is="componentName" :params="params" />
   </div>
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus'
 export default {
-  
+  name: 'ChatComponent',
+  components: {
+    Room: () => import('@/components/RoomComponent')
+  },
+  props: {
+    params: Object
+  },
+  data() {
+    return {
+      componentName: '',
+      roomList: [],
+    }
+  },
+  created() {
+    EventBus.$on('CLOSE_ROOM' + this.params.index, () => {
+      this.componentName = ''
+    });
+  },
+  computed: {
+    fnIsGroup() {
+      console.log(this.params)
+      return this.params.headCount > 1
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-.container{
+.chatcomponent__container{
   display: flex;
+}
+.main {
+  width: 100%;
+  padding: 10px 20px;
+  position: relative;
+
   &:hover{
     background-color: #F8F8F8;
   }
   &.actv{
     background-color: #F2F2F2;
   }
-}
-.main {
-  width: 100%;
-  padding: 10px 20px;
-  position: relative;
   .room {
     display: flex;
     align-items: center;
