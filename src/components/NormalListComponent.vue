@@ -1,8 +1,8 @@
 <template>
-  <div class="container" @blur="fnBlur()">
+  <div class="container">
     <div class="main">
       <ul class="item__list">
-        <li class="item" v-for="(item, index) in itemList" :key="index" >
+        <li class="item" v-for="(item, index) in params.itemList" :key="index" >
           {{ item.name }}
         </li>
       </ul>
@@ -13,28 +13,16 @@
 <script>
 export default {
   name: 'NormalList',
+  props: {
+    params: Object
+  },
   data() {
     return {
-      itemList: [
-        {
-          name: '설정'
-        },
-        {
-          name: '잠금모드'
-        },
-        {
-          name: '로그아웃'
-        },
-        {
-          name: '종료'
-        }
-      ]
+      
     }
   },
   methods: {
-    fnBlur() {
-      console.log(blur);
-    }
+    
   }
 }
 </script>
