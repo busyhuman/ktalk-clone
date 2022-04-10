@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="fnResetToggle()">
+  <div class="container">
     <nav class="main">
       <router-link :to="{ path: '/friends' }" class="friends" :class="{ actv: selected === 'friends'}">
         <span class="material-icons">
@@ -28,7 +28,7 @@
         <span class="material-icons-outlined" @click.stop="fnToggleSetting()">
           settings
         </span>
-        <NormalList v-show="fnGetSetting === true" class="normal__list" />
+        <NormalList v-show="fnGetSetting === true" class="normal__list" :params="normalList" />
       </div>
     </nav>
     <component :is="componentName" />
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import EventBus from '@/utils/eventBus';
+import EventBus from '@/utils/eventBus'
 import NormalList from '@/components/NormalListComponent'
 export default {
   components: {
@@ -49,6 +49,22 @@ export default {
   data() {
     return {
       componentName: '',
+      normalList: {
+        itemList: [
+          {
+            name: '설정'
+          },
+          {
+            name: '잠금모드'
+          },
+          {
+            name: '로그아웃'
+          },
+          {
+            name: '종료'
+          }
+        ]
+      },
     }
   },
   computed: {
@@ -69,9 +85,6 @@ export default {
     fnToggleSetting() {
       this.$store.state.toggle.setting = !this.$store.state.toggle.setting
     },
-    fnResetToggle() {
-      this.$store.state.toggle.setting = false;
-    }
   }
 }
 </script>
