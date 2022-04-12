@@ -1,7 +1,5 @@
 <template>
-  <div class="chatcomponent__container"
-  @dblclick="componentName = 'Room'"
-  >
+  <div class="chatcomponent__container">
     <div class="main">
       <div class="room">
         <div class="room__image">
@@ -24,34 +22,22 @@
         </section>
       </div>
     </div>
-    <component :is="componentName" :params="params" />
   </div>
 </template>
 
 <script>
-import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatComponent',
-  components: {
-    Room: () => import('@/components/RoomComponent')
-  },
   props: {
     params: Object
   },
   data() {
     return {
-      componentName: '',
-      roomList: [],
+
     }
-  },
-  created() {
-    EventBus.$on('CLOSE_ROOM' + this.params.index, () => {
-      this.componentName = ''
-    });
   },
   computed: {
     fnIsGroup() {
-      console.log(this.params)
       return this.params.headCount > 1
     }
   },

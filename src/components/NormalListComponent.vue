@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main">
       <ul class="item__list">
-        <li class="item" v-for="(item, index) in params.itemList" :key="index" >
+        <li class="item" v-for="(item, index) in params.itemList" :key="index" @click="fnOnClickItem(index)">
           {{ item.name }}
         </li>
       </ul>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus'
 export default {
   name: 'NormalList',
   props: {
@@ -22,7 +23,9 @@ export default {
     }
   },
   methods: {
-    
+    fnOnClickItem(index) {
+      EventBus.$emit('NORMALLIST_' + this.params.name, index)
+    },
   }
 }
 </script>

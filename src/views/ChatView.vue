@@ -20,12 +20,15 @@
         </div>
       </header>
       <div class="chattings">
-        <div v-for="(item, index) in chatItems" :key="index">
-          <Chat :params="item.chatParams" />
+        <div v-for="(item) in chatItems" :key="item.rindex" @dblclick="fnSetChatRoom(item)">
+          <Chat :params="item" />
         </div>
       </div>
     </div>
-    <component :is="componentName" />
+    <div v-for="(item, index) in roomItems" :key="index">
+      <Room :params="item" />
+    </div>
+
   </div>
 </template>
 
@@ -33,18 +36,20 @@
 import Nav from '@/components/NavComponent'
 import Chat from '@/components/ChatComponent'
 import NormalList from '@/components/NormalListComponent'
+import Room from '@/components/RoomComponent'
+import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatView',
   components: {
     Nav,
     Chat,
     NormalList,
-    Room: () => import('@/components/RoomComponent'),
+    Room,
   },
   data() {
     return {
-      componentName: '',
       normalList: {
+        name: 'CHATTING',
         itemList: [
           {
             name: '최신 메시지 순'
@@ -62,77 +67,108 @@ export default {
       },
       chatItems: [
         {
-          chatParams: {
-            name: '현대건설',
-            headCount: 23,
-            index: 0,
-          }
+          name: '현대건설',
+          headCount: 23,
+          rindex: 0,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '산책방',
-            headCount: 12,
-            index: 1,
-          }
+          name: '산책방',
+          headCount: 12,
+          rindex: 1,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '이장호',
-            headCount: 1,
-            index: 2,
-          }
+          name: '이장호',
+          headCount: 1,
+          rindex: 2,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '권혁준',
-            headCount: 1,
-            index: 3,
-          }
+          name: '권혁준',
+          headCount: 1,
+          rindex: 3,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '배그',
-            headCount: 4,
-            index: 4,
-          }
+          name: '배그',
+          headCount: 4,
+          rindex: 4,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '코딩방',
-            headCount: 3,
-            index: 5,
-          }
+          name: '코딩방',
+          headCount: 3,
+          rindex: 5,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '강현대',
-            headCount: 1,
-            index: 6,
-          }
+          name: '강현대',
+          headCount: 1,
+          rindex: 6,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '김준현',
-            headCount: 1,
-            index: 7,
-          }
+          name: '김준현',
+          headCount: 1,
+          rindex: 7,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
         {
-          chatParams: {
-            name: '호메방',
-            headCount: 9,
-            index: 8,
-          }
+          name: '호메방',
+          headCount: 9,
+          rindex: 8,
+          lastMessage: '',
+          lastMessageDate: '',
+          isRoomActive: false,
         },
-      ]
-
+      ],
+      roomItems: [],
     }
+  },
+  created() {
+    EventBus.$on('NORMALLIST_' + this.normalList.name, (index) => {
+      /**
+       * TODO:
+       * index에 따라 채팅목록 Sort
+       */
+      index
+    })
   },
   methods: {
     fnToggleChatSort() {
       this.$store.state.toggle.chatSort = !this.$store.state.toggle.chatSort
     },
-
+    fnSetChatRoom(item) {
+      if(item.isRoomActive === false){  // 채팅방이 횔성화 되어있다면
+        for(let chatItem of this.chatItems) {
+          if(item.rindex === chatItem.rindex){
+            chatItem.isRoomActive = true
+            break
+          }
+        }
+        this.roomItems.push(item);
+      }
+      else{
+        EventBus.$emit('OPEN_ROOM' + item.rindex)
+      }
+    },
   }
 }
 </script>
@@ -140,15 +176,18 @@ export default {
 <style lang="scss" scoped>
 .chatview__container {
   display: flex;
+  overflow: clip;
 }
 .main {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  width: 100vw;
+  max-width: 100vw;
   overflow-x: hidden;
   overflow-y: auto;
   padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
-  width: 100vw;
+
   .header {
     display: flex;
     position: relative;

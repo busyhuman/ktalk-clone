@@ -3,6 +3,7 @@
   @mouseup="fnOnMouseUp()"
   @mousedown="fnOnMouseDown($event)"
   @mousemove="fnOnMouseMove($event)"
+  :style="actv ? '' : 'display: none'"
   >
     <div class="profile">
       <div class="profile__image"
@@ -56,6 +57,7 @@ export default {
   },
   data() {
     return {
+      actv : true,
       drag: {
         isDraggable: false,
         shiftX: 0,
@@ -64,9 +66,14 @@ export default {
       message: '',
     }
   },
+  created() {
+    EventBus.$on('OPEN_ROOM' + this.params.rindex, () => {
+      console.log(this.params.rindex)
+      this.actv = true
+    })
+  },
   computed: {
     fnIsGroup() {
-      console.log(this.params)
       return this.params.headCount > 1
     }
   },
@@ -90,7 +97,7 @@ export default {
       }
     },
     fnOnClickClose() {
-      EventBus.$emit('CLOSE_ROOM' + this.params.index)
+      this.actv = false
     },
     fnIsNull(msg) {
       return Utils.isNull(msg)
