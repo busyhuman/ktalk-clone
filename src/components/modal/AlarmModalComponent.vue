@@ -41,7 +41,7 @@ export default {
   left: 45vw;
   background: black;
   padding: 10px;
-  z-index: 400;
+  z-index: 1000;
   opacity: 0;
 
   &.play {
