@@ -4,7 +4,7 @@ import signin from '@/views/SignInView';
 import friends from '@/views/FriendsView';
 import chats from '@/views/ChatView';
 import more from '@/views/MoreView';
-import NotFound from '@/components/NotFound';
+import NotFound from '@/views/NotFound';
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
