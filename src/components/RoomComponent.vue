@@ -92,8 +92,8 @@ export default {
     },
     fnOnMouseMove(event) {
       if(this.drag.isDraggable){
-        event.target.style.left = event.pageX - this.drag.shiftX + 'px'
-        event.target.style.top = event.pageY - this.drag.shiftY + 'px'
+        event.target.style.left = event.clientX - this.drag.shiftX + 'px'
+        event.target.style.top = event.clientY - this.drag.shiftY + 'px'
       }
     },
     fnOnClickClose() {
@@ -110,7 +110,7 @@ export default {
 .room__container {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   left: 300px;
   top: 60px;
   width: 320px;
