@@ -10,7 +10,7 @@
       @mouseup.stop
       @mousedown.stop
       @mousemove.stop>
-        <img src="@/assets/kakaologo.png" alt="kakao.png">
+        <img src="@/assets/kakaologo.png" alt="@/assets/kakaologo.png">
       </div>
       <div class="profile__textarea"
       @mouseup.stop
@@ -34,12 +34,103 @@
     @mouseup.stop
     @mousedown.stop
     @mousemove.stop
-    ></div>
+    >
+      <div class="chat">
+        <div class="other">
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
+          </div>
+          <div class="contents">
+            <div class="name">
+              강현대
+            </div>
+            <div class="msg">
+              뭐하누? ㅋ
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat">
+        <div class="user">
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
+          </div>
+          <div class="contents">
+            <div class="name">
+              이장호
+            </div>
+            <div class="msg">
+              나는.. 일하는중..
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat">
+        <div class="other">
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
+          </div>
+          <div class="contents">
+            <div class="name">
+              강현대
+            </div>
+            <div class="msg">
+               백포블 하자... ㅋㅋㅋㅋ ㅋㅋㅋㅋㅋㅋ  ㅋㅋㅋㅋㅋㅋㅋㅋㅋ ㅋㅋㅋㅋㅋ
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat">
+        <div class="other">
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
+          </div>
+          <div class="contents">
+            <div class="name">
+              강현대
+            </div>
+            <div class="msg">
+              호옹찡.. 싫누?
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat">
+        <div class="user">
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
+          </div>
+          <div class="contents">
+            <div class="name">
+              이장호
+            </div>
+            <div class="msg">
+              머른다
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat">
+        <div class="other">
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
+          </div>
+          <div class="contents">
+            <div class="name">
+              강현대
+            </div>
+            <div class="msg">
+              아는게 머노?
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="message"
     @mouseup.stop
     @mousedown.stop
     @mousemove.stop>
-      <textarea class="input" v-model="message"></textarea>
+      <textarea class="input" v-model="message" @keypress.enter.prevent="fnEnterMessage()"></textarea>
       <button class="submit" :disabled="fnIsNull(message)">
         전송
       </button>
@@ -98,6 +189,10 @@ export default {
     },
     fnOnClickClose() {
       this.actv = false
+    },
+    fnEnterMessage() {
+      console.log('wow')
+      this.message = ''
     },
     fnIsNull(msg) {
       return Utils.isNull(msg)
@@ -161,13 +256,98 @@ export default {
     }
   }
   .main {
+    display: flex;
+    flex-direction: column;
     width: 318px;
-    height: 350px;
+    height: 330px;
     display: flex;
     top: 70px;
     position: absolute;
+    padding: 10px;
     background: #B2C7D9;
-    
+    overflow-y: auto;
+    overflow-x: hidden;
+    .chat {
+      padding: 2px;
+      width: 100%;
+      margin-top: 5px;
+
+      .other {
+        display: flex;
+        width: 100%;
+        .profile__image {
+          img {
+            width: 42px;
+            height: 42px;
+            border: 1 solid;
+            border-radius: 30%;
+          }
+        }
+        .contents {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          margin: 5px 0 0 7px;
+          .name {
+            font-size: 12px;
+            font-weight: 500;
+          }
+          .msg {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            max-width: 80%;
+            margin-top: 5px;
+            font-size: 12px;
+            background: white;
+            padding: 7px;
+            border-radius: 5%;
+
+            .msg__date {
+
+            }
+          }
+        }
+      }
+
+      .user {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        width: 100%;
+        .profile__image {
+          img {
+            width: 0;
+            height: 0;
+          }
+        }
+        .contents {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          width: 100%;
+          margin: 0 0 5px 0;
+          .name {
+            font-size: 0;
+          }
+          .msg {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 80%;
+            margin-top: 5px;
+            font-size: 12px;
+            background: #FFEB33;
+            padding: 7px;
+            border-radius: 5%;
+
+            .msg__date {
+
+            }
+          }
+        }
+      }
+    }
   }
   .message {
     position: absolute;
