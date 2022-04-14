@@ -176,50 +176,53 @@ export default {
 <style lang="scss" scoped>
 .chatview__container {
   display: flex;
-  overflow: clip;
-}
-.main {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
   width: 100vw;
-  max-width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
-
-  .header {
+  height: 100vh;
+  overflow: hidden;
+  .main {
     display: flex;
-    position: relative;
-    left: 20px;
-    .title {
+    flex-direction: column;
+    margin-top: 40px;
+    width: 100%;
+    padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
+
+    .header {
       display: flex;
-      font-size: 36px;
-      font-weight: 500;
-      cursor: pointer;
-      .arrow--down {
+      position: relative;
+      left: 20px;
+      .title {
         display: flex;
-        font-size: 12px;
-        align-items: center;
-      }
-    }
-    .normal__list {
-      position: absolute;
-      top: 50px;
-    }
-    .search {
-      .material-icons-outlined {
-        display: inline-block;
         font-size: 36px;
-        position: absolute;
-        right: 40px;
-        padding: 5px;
-        &:hover {
-          background-color: #F3F3F3;
-          border-radius: 100%;
-          cursor: pointer;
+        font-weight: 500;
+        cursor: pointer;
+        .arrow--down {
+          display: flex;
+          font-size: 12px;
+          align-items: center;
         }
       }
+      .normal__list {
+        position: absolute;
+        top: 50px;
+      }
+      .search {
+        .material-icons-outlined {
+          display: inline-block;
+          font-size: 36px;
+          position: absolute;
+          right: 40px;
+          padding: 5px;
+          &:hover {
+            background-color: #F3F3F3;
+            border-radius: 100%;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .chattings {
+      width: 100%;
+      overflow-y: auto;
     }
   }
 }
