@@ -202,6 +202,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 10px;
+}
+  
+::-webkit-scrollbar-thumb {
+  background: #8B9AA6;
+}
 .room__container {
   display: flex;
   flex-direction: column;

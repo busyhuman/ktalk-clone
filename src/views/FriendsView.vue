@@ -183,9 +183,6 @@ export default {
         }
         .friend__container {
           height: 100%;
-          .friend {
-
-          }
         }
       }
     }
