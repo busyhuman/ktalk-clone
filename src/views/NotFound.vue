@@ -16,10 +16,10 @@
   font-family: "Oswald", sans-serif;
   padding: 80px 20px;
   .status {
-    font-size: 160px;
+    font-size: 150px;
   }
   .message {
-    font-size: 50px;
+    font-size: 40px;
   }
 }
 </style>

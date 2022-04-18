@@ -156,7 +156,7 @@ export default {
       this.$store.state.toggle.chatSort = !this.$store.state.toggle.chatSort
     },
     fnSetChatRoom(item) {
-      if(item.isRoomActive === false){  // 채팅방이 횔성화 되어있다면
+      if(item.isRoomActive === false){  // 채팅방이 이미 횔성화 되어있지 않다면
         for(let chatItem of this.chatItems) {
           if(item.rindex === chatItem.rindex){
             chatItem.isRoomActive = true
