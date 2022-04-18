@@ -4,6 +4,7 @@ import signin from '@/views/SignInView';
 import friends from '@/views/FriendsView';
 import chats from '@/views/ChatView';
 import more from '@/views/MoreView';
+import auth from '@/views/AuthView';
 import NotFound from '@/views/NotFound';
 Vue.use(VueRouter);
 
@@ -13,6 +14,11 @@ export const router = new VueRouter({
     {
       path: '/',
       redirect: '/signin',
+    },
+    {
+      name: 'auth',
+      path: '/auth',
+      component: auth
     },
     {
       name: 'signIn',

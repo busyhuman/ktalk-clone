@@ -12,7 +12,7 @@
           <input type="password">
         </div>
         <div class="sign-in__submit">
-          <button class="submit actv" type="button">로그인</button>
+          <button class="submit actv" type="button" @click="fnAuthorize()">로그인</button>
         </div>
           <div class="auto-login no-drag">
           <input type="checkbox" id="autoLogin">
@@ -35,6 +35,14 @@ export default {
   data() {
     return {
       
+    }
+  },
+  methods: {
+    fnAuthorize() {
+      fetch('https://kauth.kakao.com/oauth/authorize?client_id=f17d6c119019aed325c2d17a808aa4b2&redirect_uri=http://localhost:8080/auth&response_type=code')
+      .then( (res) => {
+        console.log(res.json())
+      })
     }
   }
 }
