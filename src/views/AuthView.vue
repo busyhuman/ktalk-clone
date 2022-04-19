@@ -8,18 +8,19 @@
 export default {
   data() {
     return {
-      baseUrl: 'https://kauth.kakao.com',
-      code: this.$route.query.code
+      token: {
+        baseUrl: 'https://kauth.kakao.com',
+        path: '/oauth/token',
+        grant_type: 'authorization_code',
+        redirect_uri: 'http://localhost:8080/auth',
+        code: this.$route.query.code
+      },
     }
   },
-  mounted(){
-    this.fnConsole();
+  created(){
+    this.fnSelectToken();
   },
   methods: {
-    fnConsole() {
-      console.log('code: ' + this.code);
-      this.fnSelectToken();
-    },
     fnSelectToken() {
       let option = {
         method: "POST",
@@ -27,13 +28,13 @@ export default {
           "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
         },
       }
-      fetch('https://kauth.kakao.com/oauth/token?'
-      + 'grant_type=authorization_code'
+      fetch(this.token.baseUrl + this.token.path
+      + '?grant_type=' + this.token.grant_type
       + '&client_id=' + process.env.VUE_APP_ACCESS_KEY
-      + '&redirect_uri=http://localhost:8080/auth'
-      + '&code=' + this.code
+      + '&redirect_uri=' + this.token.redirect_uri
+      + '&code=' + this.token.code
       , option)
-      .then( (res) => res.json())
+      .then( (res) => res.json() )
       .then( (data) => {
         console.log(data)
         this.$store.state.account = data
