@@ -1,1 +1,1 @@
-# kakaotalk-clone
+# ktalk-clone
