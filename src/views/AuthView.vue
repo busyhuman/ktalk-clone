@@ -36,8 +36,9 @@ export default {
       , option)
       .then( (res) => res.json() )
       .then( (data) => {
-        console.log(data)
-        this.$store.state.account = data
+        localStorage.setItem('access_token', data.access_token)
+        localStorage.setItem('refresh_token', data.refresh_token)
+        localStorage.setItem('scope', data.scope)
         this.$router.push('friends')
       })
     },
