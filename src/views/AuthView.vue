@@ -5,6 +5,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
 export default {
   data() {
     return {
@@ -12,7 +13,7 @@ export default {
         baseUrl: 'https://kauth.kakao.com',
         path: '/oauth/token',
         grant_type: 'authorization_code',
-        redirect_uri: 'http://localhost:8080/auth',
+        redirect_uri: 'https://localhost:8080/auth',
         code: this.$route.query.code
       },
     }
@@ -21,6 +22,9 @@ export default {
     this.fnSelectToken();
   },
   methods: {
+    /**
+     * 토큰 발급받기
+     */
     fnSelectToken() {
       let option = {
         method: "POST",
@@ -30,12 +34,13 @@ export default {
       }
       fetch(this.token.baseUrl + this.token.path
       + '?grant_type=' + this.token.grant_type
-      + '&client_id=' + process.env.VUE_APP_ACCESS_KEY
+      + '&client_id=' + process.env.VUE_APP_REST_KEY
       + '&redirect_uri=' + this.token.redirect_uri
       + '&code=' + this.token.code
       , option)
       .then( (res) => res.json() )
       .then( (data) => {
+        Kakao.Auth.setAccessToken(data.access_token)
         localStorage.setItem('access_token', data.access_token)
         localStorage.setItem('refresh_token', data.refresh_token)
         localStorage.setItem('scope', data.scope)

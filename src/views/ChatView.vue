@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       normalList: {
-        name: 'CHATTING',
+        title: 'CHATTING',
         itemList: [
           {
             name: '최신 메시지 순'
@@ -152,9 +152,15 @@ export default {
     })
   },
   methods: {
+    /**
+     * 채팅창 정렬 LIST 토글
+     */
     fnToggleChatSort() {
       this.$store.state.toggle.chatSort = !this.$store.state.toggle.chatSort
     },
+    /**
+     * 채팅방 셋팅하기
+     */
     fnSetChatRoom(item) {
       if(item.isRoomActive === false){  // 채팅방이 이미 횔성화 되어있지 않다면
         for(let chatItem of this.chatItems) {

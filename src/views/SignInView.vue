@@ -17,7 +17,7 @@
           </a>
         </div>
           <div class="auto-login no-drag">
-          <input type="checkbox" id="autoLogin">
+          <input type="checkbox" id="autoLogin" :checked="autoLogin" @click="fnSetAutoLogin()">
           <label for="autoLogin">자동로그인</label>
           <span class="material-icons">
             help_outline
@@ -36,20 +36,25 @@
 export default {
   data() {
     return {
+      autoLogin: '',
       authorize: {
         baseUrl: 'https://kauth.kakao.com',
-        path: '/oauth/authorize',
-        redirect_uri: 'http://localhost:8080/auth',
+        redirect_uri: 'https://localhost:8080/auth',
         response_type: 'code',
       },
       authorizeLink: ''
     }
   },
   created() {
-    this.authorizeLink = this.authorize.baseUrl + this.authorize.path + '?' + 'client_id=' + process.env.VUE_APP_ACCESS_KEY + '&' + 'redirect_uri=' + this.authorize.redirect_uri + '&' + 'response_type=' + this.authorize.response_type
+    
+    this.authorizeLink = this.authorize.baseUrl + '/oauth/authorize' + '?' + 'client_id=' + process.env.VUE_APP_REST_KEY + '&' + 'redirect_uri=' + this.authorize.redirect_uri + '&' + 'response_type=' + this.authorize.response_type
+    this.autoLogin = JSON.parse(localStorage.getItem('autoLogin'))  // JSON.parse를 해야 문자열로된 boolean값을 boolean으로 변환할 수 있다.
   },
   methods: {
-
+    fnSetAutoLogin () {
+      this.autoLogin = !this.autoLogin
+      localStorage.setItem('autoLogin', this.autoLogin)
+    }
   }
 }
 </script>
