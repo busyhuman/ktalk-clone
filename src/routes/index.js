@@ -21,7 +21,7 @@ export const router = new VueRouter({
       component: auth
     },
     {
-      name: 'signIn',
+      name: 'signin',
       path: '/signin',
       component: signin
     },
