@@ -36,6 +36,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
 import EventBus from '@/utils/eventBus'
 import NormalList from '@/components/NormalListComponent'
 export default {
@@ -49,23 +50,37 @@ export default {
   data() {
     return {
       componentName: '',
-      normalList: {
-        itemList: [
-          {
-            name: '설정'
-          },
-          {
-            name: '잠금모드'
-          },
-          {
-            name: '로그아웃'
-          },
-          {
-            name: '종료'
-          }
-        ]
+      normalList: {},
+      api: {
+        baseUrl: 'https://kapi.kakao.com',
       },
     }
+  },
+  created() {
+    this.normalList = {
+      title: 'setting',
+      itemList: [
+        {
+          name: '설정',
+          func: '',
+        },
+        {
+          name: '잠금모드'
+        },
+        {
+          name: '로그아웃',
+          func: this.fnSignOut
+        },
+        {
+          name: '종료',
+          func: this.fnTokenExpire
+        }
+      ]
+    }
+
+    EventBus.$on('NORMALLIST_' + this.normalList.title, (index) => {
+      this.normalList.itemList[index].func()
+    })  
   },
   computed: {
     fnGetAlarm() {
@@ -76,6 +91,29 @@ export default {
     },
   },
   methods: {
+    fnSignOut() {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: (response) => {
+          console.log(response);
+          localStorage.setItem('autoLogin', false)
+          this.$router.push('signin')
+        },
+        fail: function(error) {
+          console.log(error);
+        },
+      })
+    },
+    fnTokenExpire() {
+      if (!Kakao.Auth.getAccessToken()) {
+        console.log('Not logged in.');
+        return;
+      }
+      Kakao.Auth.logout(() => {
+        console.log(Kakao.Auth.getAccessToken());
+        this.$router.push('signin')
+      });
+    },
     fnToggleAlarm() {
       this.componentName = 'Alarm'
       this.$store.state.toggle.alarm = !this.$store.state.toggle.alarm

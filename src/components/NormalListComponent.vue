@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     fnOnClickItem(index) {
-      EventBus.$emit('NORMALLIST_' + this.params.name, index)
+      EventBus.$emit('NORMALLIST_' + this.params.title, index)
     },
   }
 }
