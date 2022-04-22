@@ -3,7 +3,7 @@
     <div class="main">
       <div class="profile">
         <div class="profile__image">
-          <img src="@/assets/kakaologo.png" alt="kakao.png">
+          <img src="@/assets/kakaologo.png" alt="kakao.png" loading="lazy">
         </div>
         <section class="profile__textarea">
           <div class="profile__name">
