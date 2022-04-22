@@ -56,6 +56,9 @@ export default {
       localStorage.setItem('autoLogin', this.autoLogin)
     },
     fnTokenExpire() {
+      if (!Kakao.Auth.getAccessToken()) {
+        return;
+      }
       Kakao.Auth.logout();
     },
   }

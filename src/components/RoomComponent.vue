@@ -159,7 +159,6 @@ export default {
   },
   created() {
     EventBus.$on('OPEN_ROOM' + this.params.rindex, () => {
-      console.log(this.params.rindex)
       this.actv = true
     })
   },
@@ -191,7 +190,6 @@ export default {
       this.actv = false
     },
     fnEnterMessage() {
-      console.log('wow')
       this.message = ''
     },
     fnIsNull(msg) {

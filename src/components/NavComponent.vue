@@ -94,23 +94,20 @@ export default {
     fnSignOut() {
       Kakao.API.request({
         url: '/v1/user/unlink',
-        success: (response) => {
-          console.log(response);
+        success: () => {
           localStorage.setItem('autoLogin', false)
           this.$router.push('signin')
         },
-        fail: function(error) {
-          console.log(error);
+        fail: function() {
+
         },
       })
     },
     fnTokenExpire() {
       if (!Kakao.Auth.getAccessToken()) {
-        console.log('Not logged in.');
         return;
       }
       Kakao.Auth.logout(() => {
-        console.log(Kakao.Auth.getAccessToken());
         this.$router.push('signin')
       });
     },
