@@ -32,7 +32,7 @@
 </template>
 
 <script>
-/* eslint-disable no-undef */
+/*global Kakao*/
 export default {
   data() {
     return {
