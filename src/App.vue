@@ -6,9 +6,24 @@
 </template>
 
 <script>
-
+/* eslint-disable no-undef */
 export default {
   name: 'App',
+  data() {
+    return {
+      tokenFreePathList: ['/signin', '/auth'],
+    }
+  },
+  created() {
+    console.log(this.tokenFreePathList.filter( item => item === this.$route.path).length)
+
+    if(this.tokenFreePathList.filter( item => item === this.$route.path).length === 0 ){  // token이 필요한 path라면
+      if (!Kakao.Auth.getAccessToken()) { // 토큰이 없다면
+          console.log('Not logged in.');
+          this.$router.push('signin')
+        }
+    }
+  },
   methods: {
     fnResetToggle() {
       this.$store.state.toggle.chatSort = false;
