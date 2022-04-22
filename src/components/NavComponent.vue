@@ -69,11 +69,11 @@ export default {
         },
         {
           name: '로그아웃',
-          func: this.fnSignOut
+          func: this.fnTokenExpire
         },
         {
           name: '종료',
-          func: this.fnTokenExpire
+          func: this.fnSignOut
         }
       ]
     }
