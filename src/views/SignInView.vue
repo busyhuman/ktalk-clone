@@ -5,12 +5,12 @@
         <img src="@/assets/kakaologo.png" alt="kakao.png">
       </div>
       <div class="sign-in__form">
-        <div class="sign-in__id">
+        <!-- <div class="sign-in__id">
           <input type="text" placeholder="카카오계정 (이메일 또는 전화번호)">
         </div>
         <div class="sign-in__password">
           <input type="password">
-        </div>
+        </div> -->
         <div class="sign-in__submit">
           <a :href="authorizeLink">
             <button class="submit actv" type="button" >로그인</button>
@@ -19,13 +19,13 @@
           <div class="auto-login no-drag">
           <input type="checkbox" id="autoLogin" :checked="autoLogin" @click="fnSetAutoLogin()">
           <label for="autoLogin">자동로그인</label>
-          <span class="material-icons">
+          <span class="material-icons" @click="isCheckMessageShow=true">
             help_outline
           </span>
         </div>
       </div>
-      <div class="check__message">
-        <p>카카오 계정 또는 비밀번호를 다시 확인해 주세요.</p>
+      <div class="check__message" v-show="isCheckMessageShow">
+        <p>자동로그인을 모르시나요?</p>
       </div>
     </main>
   </div>
@@ -42,7 +42,8 @@ export default {
         redirect_uri: 'https://localhost:8080/auth',
         response_type: 'code',
       },
-      authorizeLink: ''
+      authorizeLink: '',
+      isCheckMessageShow: false,
     }
   },
   created() {
@@ -130,10 +131,12 @@ main {
         cursor: pointer;
       }
       label {
+        font-size:14px;
         margin: 0;
         cursor: pointer;
       }
       span {
+        font-size: 14px;
         margin-left: 2px;
         cursor: pointer;
       }
@@ -141,6 +144,7 @@ main {
   }
   .check__message{
     margin-top: 20px;
+    font-size: 12px;
     color: #FF753E;
   }
   
