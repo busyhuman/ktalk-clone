@@ -19,7 +19,7 @@ export default {
     }
   },
   created(){
-    this.fnSelectToken();
+    this.fnSelectToken()
   },
   methods: {
     /**

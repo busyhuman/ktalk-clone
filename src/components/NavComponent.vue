@@ -96,6 +96,9 @@ export default {
         url: '/v1/user/unlink',
         success: () => {
           localStorage.setItem('autoLogin', false)
+          localStorage.removeItem('access_token')
+          localStorage.removeItem('refresh_token')
+          localStorage.removeItem('scope')
           this.$router.push('signin')
         },
         fail: function() {
@@ -108,6 +111,9 @@ export default {
         return;
       }
       Kakao.Auth.logout(() => {
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('scope')
         this.$router.push('signin')
       });
     },
