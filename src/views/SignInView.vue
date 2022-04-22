@@ -32,7 +32,7 @@
 </template>
 
 <script>
-
+/* eslint-disable no-undef */
 export default {
   data() {
     return {
@@ -46,7 +46,7 @@ export default {
     }
   },
   created() {
-    
+    this.fnTokenExpire()
     this.authorizeLink = this.authorize.baseUrl + '/oauth/authorize' + '?' + 'client_id=' + process.env.VUE_APP_REST_KEY + '&' + 'redirect_uri=' + this.authorize.redirect_uri + '&' + 'response_type=' + this.authorize.response_type
     this.autoLogin = JSON.parse(localStorage.getItem('autoLogin'))  // JSON.parse를 해야 문자열로된 boolean값을 boolean으로 변환할 수 있다.
   },
@@ -54,7 +54,10 @@ export default {
     fnSetAutoLogin () {
       this.autoLogin = !this.autoLogin
       localStorage.setItem('autoLogin', this.autoLogin)
-    }
+    },
+    fnTokenExpire() {
+      Kakao.Auth.logout();
+    },
   }
 }
 </script>
