@@ -10,7 +10,6 @@ import authmore from '@/views/AuthMoreView';
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
-  mode: 'history',
   routes: [
     {
       path: '/',
