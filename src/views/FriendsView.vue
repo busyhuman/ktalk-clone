@@ -21,53 +21,28 @@
         <section class="user__profile">
           <div class="profile">
             <div class="profile__image">
-              <img src="@/assets/kakaologo.png" alt="kakao.png">
+              <img :src="user.thumbnailURL" alt="" v-if="user.thumbnailURL !== ''">
+              <img src="@/assets/kakaologo.png" alt="" v-else>
             </div>
             <div class="profile__textarea">
               <div class="profile__name">
-                강현대
+                {{ user.nickName }}
               </div>
-              <div class="profile__hello">
+              <!-- <div class="profile__hello">
                 호멤메....
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
         <section class="friends">
           <div class="friends__title">
-            <span>친구 238</span>
-            <span>^</span>
+            <span>친구 {{ friends.total_count }}</span>
           </div>
           <div class="friend__container">
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
-            </div>
-            <div class="friend">
-              <Profile />
+            <div class="friend" v-for="item in friends.elements" :key="item.id">
+              <Profile :params="item" />
             </div>
           </div>
-
         </section>
       </div>
     </div>
@@ -76,6 +51,7 @@
 
 <script>
 
+/*global Kakao*/
 import Nav from '@/components/NavComponent'
 import Profile from '@/components/ProfileComponent'
 export default {
@@ -83,6 +59,55 @@ export default {
   components: {
     Nav,
     Profile,
+  },
+  data() {
+    return {
+      user: {
+        thumbnailURL: '',
+      },
+      friends: {},
+    }
+  },
+  created() {
+    this.fnSelectUserProfile()
+    this.fnSelectFriends()
+  },
+  methods: {
+    /**
+     * 유저 프로필 가져오기
+     */
+    fnSelectUserProfile() {
+      Kakao.API.request({
+        url: '/v1/api/talk/profile',
+        success: (res) => {
+          this.user = res
+          // if(this.user.thumbnailURL === ''){
+          //   this.user.thumbnailURL = '../assets/kakaologo.png'
+          // }
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
+    },
+    /**
+     * 친구 목록 가져오기
+     */
+    fnSelectFriends() {
+      Kakao.API.request({
+        url: '/v1/api/talk/friends',
+        data: {
+          friend_order: 'nickname',
+          limit: 20,
+        },
+        success: (res) => {
+          this.friends = res
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
+    },
   }
 }
 </script>
