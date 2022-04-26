@@ -13,9 +13,9 @@
         v-show="this.$store.state.toggle.chatSort" 
         :params="normalList"
         />
-        <div class="search">
-          <span class="material-icons-outlined">
-            search
+        <div class="chat--add">
+          <span class="material-symbols-outlined">
+            chat_add_on
           </span>
         </div>
       </header>
@@ -219,18 +219,18 @@ export default {
         position: absolute;
         top: 50px;
       }
-      .search {
-        .material-icons-outlined {
+      .chat--add {
+        .material-symbols-outlined {
           display: inline-block;
           font-size: 36px;
           position: absolute;
           right: 40px;
           padding: 5px;
-          &:hover {
-            background-color: #F3F3F3;
-            border-radius: 100%;
-            cursor: pointer;
-          }
+        }
+        &:hover {
+          background-color: #F3F3F3;
+          border-radius: 100%;
+          cursor: pointer;
         }
       }
     }

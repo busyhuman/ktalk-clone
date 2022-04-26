@@ -35,103 +35,28 @@
     @mousedown.stop
     @mousemove.stop
     >
-      <div class="chat">
-        <div class="other">
-          <div class="profile__image">
-            <img src="@/assets/baseprofile.png" alt="kakao.png">
+    <div class="chat" v-for="(item, index) in messageList" :key="index">
+      <div :class=item.author>
+        <div class="profile__image">
+          <img src="@/assets/baseprofile.png" alt="kakao.png">
+        </div>
+        <div class="contents">
+          <div class="name">
+            이장호
           </div>
-          <div class="contents">
-            <div class="name">
-              강현대
-            </div>
-            <div class="msg">
-              뭐하누? ㅋ
-            </div>
+          <div class="msg">
+            {{ item.message }}
           </div>
         </div>
       </div>
-      <div class="chat">
-        <div class="user">
-          <div class="profile__image">
-            <img src="@/assets/baseprofile.png" alt="kakao.png">
-          </div>
-          <div class="contents">
-            <div class="name">
-              이장호
-            </div>
-            <div class="msg">
-              나는.. 일하는중..
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="chat">
-        <div class="other">
-          <div class="profile__image">
-            <img src="@/assets/baseprofile.png" alt="kakao.png">
-          </div>
-          <div class="contents">
-            <div class="name">
-              강현대
-            </div>
-            <div class="msg">
-               백포블 하자... ㅋㅋㅋㅋ ㅋㅋㅋㅋㅋㅋ  ㅋㅋㅋㅋㅋㅋㅋㅋㅋ ㅋㅋㅋㅋㅋ
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="chat">
-        <div class="other">
-          <div class="profile__image">
-            <img src="@/assets/baseprofile.png" alt="kakao.png">
-          </div>
-          <div class="contents">
-            <div class="name">
-              강현대
-            </div>
-            <div class="msg">
-              호옹찡.. 싫누?
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="chat">
-        <div class="user">
-          <div class="profile__image">
-            <img src="@/assets/baseprofile.png" alt="kakao.png">
-          </div>
-          <div class="contents">
-            <div class="name">
-              이장호
-            </div>
-            <div class="msg">
-              머른다
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="chat">
-        <div class="other">
-          <div class="profile__image">
-            <img src="@/assets/baseprofile.png" alt="kakao.png">
-          </div>
-          <div class="contents">
-            <div class="name">
-              강현대
-            </div>
-            <div class="msg">
-              아는게 머노?
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
     </div>
     <div class="message"
     @mouseup.stop
     @mousedown.stop
     @mousemove.stop>
-      <textarea class="input" v-model="message" @keypress.enter.prevent="fnEnterMessage()"></textarea>
-      <button class="submit" :disabled="fnIsNull(message)">
+      <textarea class="input" v-model="message" @keypress.enter.prevent="params.isMe === true ? fnInsertMessageToMe() : fnInsertMessageToFriends()"></textarea>
+      <button class="submit" :disabled="fnIsNull(message)" @click="params.isMe === true ? fnInsertMessageToMe() : fnInsertMessageToFriends()">
         전송
       </button>
     </div>
@@ -139,6 +64,7 @@
 </template>
 
 <script>
+/*global Kakao*/
 import EventBus from '@/utils/eventBus'
 import * as Utils from '@/utils/util'
 export default {
@@ -155,6 +81,7 @@ export default {
         shiftY: 0,
       },
       message: '',
+      messageList: [],
     }
   },
   created() {
@@ -168,6 +95,65 @@ export default {
     }
   },
   methods: {
+    fnInsertMessageToMe() {
+      let message = this.message
+      this.message = ''
+
+      let option = {
+        url: '/v2/api/talk/memo/default/send',
+        data: {
+          template_object: {
+            "object_type": "text",
+            "text": message,
+            "link": {
+              "web_url": "",
+              "mobile_web_url": ""
+            },
+            "button_title": ""
+          },
+        },
+        success: () => {
+          this.messageList.push({
+            author: 'user',
+            message: message,
+          })
+        },
+        fail: function(error) {
+          console.log(error);
+        },
+      }
+      Kakao.API.request(option)
+    },
+    fnInsertMessageToFriends() {
+      let message = this.message
+      this.message = ''
+
+      let option = {
+        url: '/v1/api/talk/friends/message/default/send',
+        data: {
+          receiver_uuids: this.params.uuids,
+          template_object: {
+            "object_type": "text",
+            "text": message,
+            "link": {
+              "web_url": "",
+              "mobile_web_url": ""
+            },
+            "button_title": ""
+          },
+        },
+        success: () => {
+          this.messageList.push({
+            author: 'user',
+            message: message,
+          })
+        },
+        fail: function(error) {
+          console.log(error);
+        },
+      }
+      Kakao.API.request(option)
+    },
     fnOnMouseDown(event) {
       this.drag.isDraggable = true
       this.drag.shiftX = event.clientX - event.target.getBoundingClientRect().left
@@ -188,9 +174,6 @@ export default {
     },
     fnOnClickClose() {
       this.actv = false
-    },
-    fnEnterMessage() {
-      this.message = ''
     },
     fnIsNull(msg) {
       return Utils.isNull(msg)
@@ -308,10 +291,6 @@ export default {
             background: white;
             padding: 7px;
             border-radius: 5%;
-
-            .msg__date {
-
-            }
           }
         }
       }
@@ -345,10 +324,6 @@ export default {
             background: #FFEB33;
             padding: 7px;
             border-radius: 5%;
-
-            .msg__date {
-
-            }
           }
         }
       }

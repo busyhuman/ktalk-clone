@@ -3,15 +3,16 @@
     <div class="main">
       <div class="profile">
         <div class="profile__image">
-          <img src="@/assets/kakaologo.png" alt="kakao.png" loading="lazy">
+          <img :src="this.params.profile_thumbnail_image" v-if="this.params.profile_thumbnail_image !== ''">
+          <img src="@/assets/kakaologo.png" alt="" v-else>
         </div>
         <section class="profile__textarea">
           <div class="profile__name">
-            이장호
+            {{ this.params.profile_nickname }}
           </div>
-          <div class="profile__hello">
+          <!-- <div class="profile__hello">
             안녕하세용
-          </div>
+          </div> -->
         </section>
       </div>
     </div>
@@ -19,7 +20,14 @@
 </template>
 <script>
 export default {
-  
+  props: {
+    params: Object
+  },
+  data() {
+    return {
+
+    }
+  }
 }
 </script>
 
