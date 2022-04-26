@@ -3,7 +3,7 @@ const fs = require('fs')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: process.env.NODE_ENV === 'production' ? '/ktalk-clone/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   outputDir: './docs',
   devServer: {
     https: {
