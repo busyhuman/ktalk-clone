@@ -73,6 +73,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
         {
           name: '산책방',
@@ -81,6 +83,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
         {
           name: '이장호',
@@ -89,6 +93,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
         {
           name: '권혁준',
@@ -97,6 +103,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
         {
           name: '배그',
@@ -105,14 +113,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
-        },
-        {
-          name: '코딩방',
-          headCount: 3,
-          rindex: 5,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
         {
           name: '강현대',
@@ -121,6 +123,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: true,
         },
         {
           name: '김준현',
@@ -129,6 +133,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
         {
           name: '호메방',
@@ -137,6 +143,8 @@ export default {
           lastMessage: '',
           lastMessageDate: '',
           isRoomActive: false,
+          uuids: [],
+          isMe: false,
         },
       ],
       roomItems: [],
