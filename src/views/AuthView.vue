@@ -11,7 +11,7 @@ export default {
       autoLogin: '',
       authorize: {
         baseUrl: 'https://kauth.kakao.com',
-        redirect_uri: 'https://localhost:8080/authmore',
+        redirect_uri: process.env.VUE_APP_BASE_URL + '/authmore',
         response_type: 'code',
         scope: ['friends']
       },
@@ -20,7 +20,7 @@ export default {
         baseUrl: 'https://kauth.kakao.com',
         path: '/oauth/token',
         grant_type: 'authorization_code',
-        redirect_uri: 'https://localhost:8080/auth',
+        redirect_uri: process.env.VUE_APP_BASE_URL + '/auth',
         code: this.$route.query.code
       },
     }

@@ -39,7 +39,7 @@ export default {
       autoLogin: '',
       authorize: {
         baseUrl: 'https://kauth.kakao.com',
-        redirect_uri: 'https://localhost:8080/auth',
+        redirect_uri: process.env.VUE_APP_BASE_URL + '/auth',
         response_type: 'code',
       },
       authorizeLink: '',

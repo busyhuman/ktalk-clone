@@ -13,7 +13,7 @@ export default {
         baseUrl: 'https://kauth.kakao.com',
         path: '/oauth/token',
         grant_type: 'authorization_code',
-        redirect_uri: 'https://localhost:8080/authmore',
+        redirect_uri: process.env.VUE_APP_BASE_URL + '/authmore',
         code: this.$route.query.code
       },
     }
