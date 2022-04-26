@@ -10,6 +10,7 @@ import NotFound from '@/views/NotFound';
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',
