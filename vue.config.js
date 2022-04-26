@@ -5,7 +5,6 @@ module.exports = defineConfig({
   transpileDependencies: true,
   publicPath: process.env.NODE_ENV === 'production' ? '/ktalk-clone/' : '/',
   outputDir: './docs',
-  indexPath: "../index.html",
   devServer: {
     https: {
       key: fs.readFileSync('./example.com+5-key.pem'),
