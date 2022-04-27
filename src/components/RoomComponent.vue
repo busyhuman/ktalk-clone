@@ -5,25 +5,18 @@
   @mousemove="fnOnMouseMove($event)"
   :style="actv ? '' : 'display: none'"
   >
-    <div class="profile">
-      <div class="profile__image"
-      @mouseup.stop
-      @mousedown.stop
-      @mousemove.stop>
+    <div class="profile"
+    @mouseup.stop
+    @mousedown.stop
+    @mousemove.stop>
+      <div class="profile__image">
         <img src="@/assets/kakaologo.png" alt="@/assets/kakaologo.png">
       </div>
-      <div class="profile__textarea"
-      @mouseup.stop
-      @mousedown.stop
-      @mousemove.stop>
+      <div class="profile__textarea">
         <span class="profile__name">{{ this.params.name }}</span>
         <span class="profile__headcount" v-show="fnIsGroup"> ({{ this.params.headCount }})</span>            
       </div>
-      <div class="close"
-      @mouseup.stop
-      @mousedown.stop
-      @mousemove.stop
-      @click="fnOnClickClose()">
+      <div class="close" @click="fnOnClickClose()">
         <span class="material-icons-outlined">
           close
         </span>
@@ -35,21 +28,21 @@
     @mousedown.stop
     @mousemove.stop
     >
-    <div class="chat" v-for="(item, index) in messageList" :key="index">
-      <div :class=item.author>
-        <div class="profile__image">
-          <img src="@/assets/baseprofile.png" alt="kakao.png">
-        </div>
-        <div class="contents">
-          <div class="name">
-            이장호
+      <div class="chat" v-for="(item, index) in messageList" :key="index">
+        <div :class=item.author>
+          <div class="profile__image">
+            <img src="@/assets/baseprofile.png" alt="kakao.png">
           </div>
-          <div class="msg">
-            {{ item.message }}
+          <div class="contents">
+            <div class="name">
+              이장호
+            </div>
+            <div class="msg">
+              {{ item.message }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
     <div class="message"
     @mouseup.stop
