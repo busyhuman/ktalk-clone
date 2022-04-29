@@ -111,6 +111,7 @@ export default {
         return;
       }
       Kakao.Auth.logout(() => {
+        localStorage.setItem('autoLogin', false)
         localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         localStorage.removeItem('scope')
