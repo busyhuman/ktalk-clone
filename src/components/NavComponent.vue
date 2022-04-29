@@ -61,13 +61,6 @@ export default {
       title: 'setting',
       itemList: [
         {
-          name: '설정',
-          func: '',
-        },
-        {
-          name: '잠금모드'
-        },
-        {
           name: '로그아웃',
           func: this.fnTokenExpire
         },

@@ -21,8 +21,8 @@
         <section class="user__profile">
           <div class="profile">
             <div class="profile__image">
-              <img :src="user.thumbnailURL" alt="" v-if="user.thumbnailURL !== ''">
-              <img src="@/assets/kakaologo.png" alt="" v-else>
+              <img :src="user.thumbnailURL" alt="baseprofile" v-if="user.thumbnailURL !== ''">
+              <img src="@/assets/baseprofile.png" alt="baseprofile" v-else>
             </div>
             <div class="profile__textarea">
               <div class="profile__name">
