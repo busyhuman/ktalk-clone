@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="profile__container">
     <div class="main">
       <div class="profile">
         <div class="profile__image">
           <img :src="this.params.profile_thumbnail_image" v-if="this.params.profile_thumbnail_image !== ''">
-          <img src="@/assets/kakaologo.png" alt="" v-else>
+          <img src="@/assets/baseprofile.png" alt="" v-else>
         </div>
         <section class="profile__textarea">
           <div class="profile__name">
@@ -32,7 +32,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container{
+.profile__container {
+  width: 100%;
+  height: 100%;
   display: flex;
   &:hover{
     background-color: #F8F8F8;

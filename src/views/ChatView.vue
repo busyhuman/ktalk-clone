@@ -28,7 +28,7 @@
     <div v-for="(item, index) in roomItems" :key="index">
       <Room :params="item" />
     </div>
-
+    <ChatAdd />
   </div>
 </template>
 
@@ -37,6 +37,7 @@ import Nav from '@/components/NavComponent'
 import Chat from '@/components/ChatComponent'
 import NormalList from '@/components/NormalListComponent'
 import Room from '@/components/RoomComponent'
+import ChatAdd from '@/components/ChatAddComponent'
 import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatView',
@@ -45,6 +46,7 @@ export default {
     Chat,
     NormalList,
     Room,
+    ChatAdd,
   },
   data() {
     return {
