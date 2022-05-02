@@ -17,10 +17,10 @@
         </span>
       </router-link>
       <div class="alarm">
-        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="fnGetAlarm === true">
+        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-show="fnGetAlarm === true">
           notifications
         </span>
-        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-if="fnGetAlarm === false">
+        <span class="material-icons-outlined" @click="fnToggleAlarm()" v-show="fnGetAlarm === false">
           notifications_off
         </span>
       </div>

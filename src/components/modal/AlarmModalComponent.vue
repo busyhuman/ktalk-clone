@@ -1,7 +1,7 @@
 <template>
   <div class="container play" ref="target">
     <div class="main">
-      <span class="material-icons-outlined" v-if="toggle === true">
+      <span class="material-icons-outlined" v-show="toggle === true">
         notifications
       </span>
 

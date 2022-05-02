@@ -88,6 +88,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * 나에게 메시지 보내기
+     */
     fnInsertMessageToMe() {
       let message = this.message
       this.message = ''
@@ -110,13 +113,18 @@ export default {
             author: 'user',
             message: message,
           })
+          EventBus.$emit('ROOM' + this.params.rindex, (message))
         },
         fail: function(error) {
           console.log(error);
         },
       }
       Kakao.API.request(option)
+
     },
+    /**
+     * 친구들에게 메시지 보내기
+     */
     fnInsertMessageToFriends() {
       let message = this.message
       this.message = ''

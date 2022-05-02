@@ -13,11 +13,11 @@
             <span class="alarm"></span>
           </div>
           <div class="room__last">
-            <span class="room__last__date">오후 3:17</span>
-            <span class="room__last__count">73</span>
+            <!-- <span class="room__last__date">오후 3:17</span>
+            <span class="room__last__count">73</span> -->
           </div>
           <div class="room__message">
-            <span class="message">감사합니다. 꾸벅! 잘 부탁드립니다~~ 반갑습니다!!</span>
+            <span class="message">{{ ui.lastMessage }}</span>
           </div>
         </section>
       </div>
@@ -26,14 +26,22 @@
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatComponent',
   props: {
     params: Object
   },
+  created() {
+    EventBus.$on('ROOM' + this.params.rindex, (message) => {
+      this.ui.lastMessage = message
+    })
+  },
   data() {
     return {
-
+      ui: {
+        lastMessage: '',
+      }
     }
   },
   computed: {
