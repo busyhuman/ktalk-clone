@@ -6,7 +6,7 @@
         <span class="title">
           친구
         </span>
-        <div class="search">
+        <!-- <div class="search">
           <span class="material-icons-outlined">
             search
           </span>
@@ -15,7 +15,7 @@
           <span class="material-icons-outlined">
             person_add_alt_1
           </span>
-        </div>
+        </div> -->
       </header>
       <div class="contents">
         <section class="user__profile">
@@ -50,7 +50,6 @@
 </template>
 
 <script>
-
 /*global Kakao*/
 import Nav from '@/components/NavComponent'
 import Profile from '@/components/ProfileComponent'
@@ -125,9 +124,11 @@ export default {
     margin-top: 40px;
     padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
     width: 100%;
+    height: 100%;
     .header {
       display: flex;
       position: relative;
+      height: 5%;
       left: 20px;
       .title {
         font-size: 36px;
@@ -165,10 +166,11 @@ export default {
     }
     .contents {
       width: 100%;
-      height: 100%;
+      height: 90%;
       overflow-y: auto;
       overflow-x: hidden;
       .user__profile {
+        height: 20%;
         padding: 10px 20px;
         .profile {
           display: flex;
@@ -200,7 +202,7 @@ export default {
       }
       .friends {
         width: 100%;
-        height: 100%;
+        height: 75%;
         .friends__title {
           position: relative;
           left: 20px;
