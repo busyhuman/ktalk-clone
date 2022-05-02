@@ -17,14 +17,14 @@
           <span>친구 {{ friends.total_count }}</span>
         </div>
         <div class="friend__container">
-          <div class="friend" v-for="item in friends.elements" :key="item.id" @click="chosenFriendList.push({ name: item.profile_nickname})">
+          <div class="friend" v-for="item in friends.elements" :key="item.id" @click="fnToggleFriend(item)">
             <Profile :params="item" />
           </div>
         </div>
       </section>
       <div class="footer">
-        <button class="confirm actv">확인</button>
-        <button class="cancel">취소</button>
+        <button class="confirm" :disabled="chosenFriendList.length === 0" @click="fnOnClickConfirm()">확인</button>
+        <button class="cancel" @click="fnOnClickCancel()">취소</button>
       </div>
     </div>
   </div>
@@ -34,6 +34,7 @@
 /*global Kakao*/
 import Profile from '@/components/ProfileComponent'
 import ModalBack from '@/components/modal/ModalBackComponent'
+import EventBus from '@/utils/eventBus'
 export default {
   components: {
     Profile,
@@ -61,42 +62,46 @@ export default {
         },
         success: (res) => {
           this.friends = res
-          this.friends.elements.push({
-            favorite: false,
-            id: 2118344788,
-            profile_nickname: "이장호",
-            profile_thumbnail_image: "https://p.kakaocdn.net/th/talkp/wmXf663frN/2XBwJdejzzUqjtZDyob2Tk/7lo1ya_110x110_c.jpg",
-            uuid: "s4a2jr-IvY2hkKSSpZyrmaGXu4y_jrmOutA",
-          })
-          this.friends.elements.push({
-            favorite: false,
-            id: 2218344828,
-            profile_nickname: "이장호2",
-            profile_thumbnail_image: "https://p.kakaocdn.net/th/talkp/wmXf663frN/2XBwJdejzzUqjtZDyob2Tk/7lo1ya_110x110_c.jpg",
-            uuid: "s4a2jr-IvY2hkKSSpZyrmaGXu4y_jrmOutA",
-          })
-          this.friends.elements.push({
-            favorite: false,
-            id: 2218364828,
-            profile_nickname: "이장호3",
-            profile_thumbnail_image: "https://p.kakaocdn.net/th/talkp/wmXf663frN/2XBwJdejzzUqjtZDyob2Tk/7lo1ya_110x110_c.jpg",
-            uuid: "s4a2jr-IvY2hkKSSpZyrmaGXu4y_jrmOutA",
-          })
-          this.friends.elements.push({
-            favorite: false,
-            id: 2218394828,
-            profile_nickname: "이장호4",
-            profile_thumbnail_image: "https://p.kakaocdn.net/th/talkp/wmXf663frN/2XBwJdejzzUqjtZDyob2Tk/7lo1ya_110x110_c.jpg",
-            uuid: "s4a2jr-IvY2hkKSSpZyrmaGXu4y_jrmOutA",
-          })
         },
         fail: function(error) {
           console.log(error);
         }
       });
-
-
     },
+    /**
+     * 친구 토글
+     */
+    fnToggleFriend(item) {
+      let isToggled = false
+      this.chosenFriendList = this.chosenFriendList.filter( (it) => {
+        const isUuidSame = it.uuid !== item.uuid
+        if( isUuidSame === false){
+          isToggled = true
+        }
+        return isUuidSame
+      })
+
+      if( isToggled === false){
+        let name = item.profile_nickname
+        let uuid = item.uuid
+        this.chosenFriendList.push({
+          name,
+          uuid
+        })
+      }
+    },
+    /**
+     * 확인버튼 클릭
+     */
+    fnOnClickConfirm() {
+      EventBus.$emit('CHATADD_CONFIRM', this.chosenFriendList)
+    },
+    /**
+     * 취소버튼 클릭
+     */
+    fnOnClickCancel() {
+      EventBus.$emit('CHATADD_CANCEL')
+    }
   }
 }
 </script>
@@ -179,18 +184,15 @@ export default {
         height: 50%;
         margin-right: 5px;
         border: none;
-
-        &.actv{
-          cursor: pointer;
-          background-color: #423630;
-          color: white;
-        }
+        background: #FEE500;
+        cursor: pointer;
       }
       .cancel {
         width: 20%;
         height: 50%;
         margin-right: 5px;
         border: none;
+        cursor: pointer;
       }
     }
   }

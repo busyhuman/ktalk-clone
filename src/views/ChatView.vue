@@ -13,7 +13,7 @@
         v-show="this.$store.state.toggle.chatSort" 
         :params="normalList"
         />
-        <div class="chat--add">
+        <div class="chat--add" @click="componentName = 'chatAdd'">
           <span class="material-symbols-outlined">
             chat_add_on
           </span>
@@ -28,16 +28,16 @@
     <div v-for="(item, index) in roomItems" :key="index">
       <Room :params="item" />
     </div>
-    <ChatAdd />
+    <component :is="componentName" />
   </div>
 </template>
 
 <script>
+/*global Kakao*/
 import Nav from '@/components/NavComponent'
 import Chat from '@/components/ChatComponent'
 import NormalList from '@/components/NormalListComponent'
 import Room from '@/components/RoomComponent'
-import ChatAdd from '@/components/ChatAddComponent'
 import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatView',
@@ -46,10 +46,16 @@ export default {
     Chat,
     NormalList,
     Room,
-    ChatAdd,
+    chatAdd: () => import('@/components/ChatAddComponent'),
   },
   data() {
     return {
+      ui: {
+        chatAdd: false,
+      },
+      user: {},
+      componentName: '',
+      cureentRindex: 1, // 0 (본인)
       normalList: {
         title: 'CHATTING',
         itemList: [
@@ -67,92 +73,12 @@ export default {
           }
         ]
       },
-      chatItems: [
-        {
-          name: '현대건설',
-          headCount: 23,
-          rindex: 0,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-        {
-          name: '산책방',
-          headCount: 12,
-          rindex: 1,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-        {
-          name: '이장호',
-          headCount: 1,
-          rindex: 2,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-        {
-          name: '권혁준',
-          headCount: 1,
-          rindex: 3,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-        {
-          name: '배그',
-          headCount: 4,
-          rindex: 4,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-        {
-          name: '강현대',
-          headCount: 1,
-          rindex: 6,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: true,
-        },
-        {
-          name: '김준현',
-          headCount: 1,
-          rindex: 7,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-        {
-          name: '호메방',
-          headCount: 9,
-          rindex: 8,
-          lastMessage: '',
-          lastMessageDate: '',
-          isRoomActive: false,
-          uuids: [],
-          isMe: false,
-        },
-      ],
+      chatItems: [],
       roomItems: [],
     }
   },
   created() {
+    this.fnSelectUserProfile()
     EventBus.$on('NORMALLIST_' + this.normalList.name, (index) => {
       /**
        * TODO:
@@ -160,8 +86,62 @@ export default {
        */
       index
     })
+    EventBus.$on('CHATADD_CONFIRM', (item) => {
+      let name = ''
+      let uuid = []
+      item.forEach( (it, idx) => {
+        if(idx > 0){
+          name += ', '
+        }
+        name += it.name
+        uuid.push(it.uuid)
+      }) 
+      this.chatItems.push({
+        name: name,
+        headCount: uuid.length,
+        rindex: this.cureentRindex,
+        lastMessage: ' ',
+        lastMessageDate: '',
+        isRoomActive: false,
+        uuids: [],
+        isMe: false,
+      })
+      this.cureentRindex++
+      this.componentName = ''
+    })
+
+    EventBus.$on('CHATADD_CANCEL', () => {
+      this.componentName = ''
+    })
   },
   methods: {
+    /**
+     * 유저 프로필 가져오기
+     */
+    fnSelectUserProfile() {
+      Kakao.API.request({
+        url: '/v1/api/talk/profile',
+        success: (res) => {
+          this.user = res
+          // if(this.user.thumbnailURL === ''){
+          //   this.user.thumbnailURL = '../assets/kakaologo.png'
+          // }
+          this.chatItems.push({
+            name: this.user.nickName,
+            headCount: 1,
+            rindex: 0,
+            lastMessage: '',
+            lastMessageDate: '',
+            isRoomActive: false,
+            uuids: [],
+            isMe: true,
+          })
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
+    },
     /**
      * 채팅창 정렬 LIST 토글
      */
