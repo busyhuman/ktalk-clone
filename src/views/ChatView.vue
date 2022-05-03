@@ -3,11 +3,11 @@
     <Nav selected="chats" />
     <div class="main" >
       <header class="header">
-        <span class="title" @click.stop="fnToggleChatSort($event)">
+        <span class="title">
           채팅
-          <span class="arrow--down">
+          <!-- <span class="arrow--down">
             ▼
-          </span>
+          </span> -->
         </span>
         <NormalList class="normal__list"
         v-show="this.$store.state.toggle.chatSort" 
@@ -190,7 +190,6 @@ export default {
         display: flex;
         font-size: 36px;
         font-weight: 500;
-        cursor: pointer;
         .arrow--down {
           display: flex;
           font-size: 12px;
