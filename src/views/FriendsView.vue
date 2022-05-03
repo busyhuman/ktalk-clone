@@ -128,7 +128,6 @@ export default {
     .header {
       display: flex;
       position: relative;
-      height: 5%;
       left: 20px;
       .title {
         font-size: 36px;
@@ -166,11 +165,10 @@ export default {
     }
     .contents {
       width: 100%;
-      height: 90%;
+      margin-top: 10px;
       overflow-y: auto;
       overflow-x: hidden;
       .user__profile {
-        height: 20%;
         padding: 10px 20px;
         .profile {
           display: flex;
@@ -202,14 +200,10 @@ export default {
       }
       .friends {
         width: 100%;
-        height: 75%;
         .friends__title {
           position: relative;
           left: 20px;
           font-size: 11px;
-        }
-        .friend__container {
-          height: 100%;
         }
       }
     }
