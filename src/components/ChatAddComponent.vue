@@ -150,9 +150,9 @@ export default {
         padding: 0 5px;
         margin-right: 5px;
         border: 1px solid;
+        border-radius: 40px;
         height: 50%;
         font-size: 11px;
-
       }
     }
     .friends {
