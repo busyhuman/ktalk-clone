@@ -127,7 +127,7 @@ export default {
           //   this.user.thumbnailURL = '../assets/kakaologo.png'
           // }
           this.chatItems.push({
-            name: this.user.nickName,
+            name: `${this.user.nickName} (본인)`,
             headCount: 1,
             rindex: 0,
             lastMessage: '',
