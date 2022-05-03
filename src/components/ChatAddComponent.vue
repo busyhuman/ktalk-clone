@@ -44,6 +44,7 @@ export default {
     return {
       chosenFriendList: [],
       friends: {},
+      FRIEND_LIMIT_COUNT: 5,
     }
   },
   created() {
@@ -81,7 +82,7 @@ export default {
         return isUuidSame
       })
 
-      if( isToggled === false){
+      if( isToggled === false && this.chosenFriendList.length < this.FRIEND_LIMIT_COUNT){
         let name = item.profile_nickname
         let uuid = item.uuid
         this.chosenFriendList.push({
