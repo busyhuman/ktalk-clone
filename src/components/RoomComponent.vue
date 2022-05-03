@@ -148,6 +148,7 @@ export default {
             author: 'user',
             message: message,
           })
+          EventBus.$emit('ROOM' + this.params.rindex, (message))
         },
         fail: function(error) {
           console.log(error);
