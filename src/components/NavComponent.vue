@@ -125,6 +125,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-height: 420px) {
+  .settings {
+    display: none;
+  }
+}
+@media screen and (max-height: 480px) {
+  .alarm {
+    display: none;
+  }
+}
 .main {
   display: flex;
   flex-direction: column;
