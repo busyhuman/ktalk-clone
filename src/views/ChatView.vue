@@ -103,7 +103,7 @@ export default {
         lastMessage: ' ',
         lastMessageDate: '',
         isRoomActive: false,
-        uuids: [],
+        uuids: uuid,
         isMe: false,
       })
       this.cureentRindex++
