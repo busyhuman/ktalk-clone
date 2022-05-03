@@ -197,7 +197,7 @@ export default {
   flex-direction: column;
   position: fixed;
   left: 20px;
-  top: 40px;
+  top: 20px;
   width: 320px;
   height: 480px;
   z-index: 600;
