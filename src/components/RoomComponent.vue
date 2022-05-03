@@ -196,8 +196,8 @@ export default {
   display: flex;
   flex-direction: column;
   position: fixed;
-  left: 300px;
-  top: 60px;
+  left: 90px;
+  top: 70px;
   width: 320px;
   height: 480px;
   z-index: 600;
