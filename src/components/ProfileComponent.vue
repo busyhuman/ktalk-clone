@@ -3,8 +3,8 @@
     <div class="main">
       <div class="profile">
         <div class="profile__image">
-          <img :src="this.params.profile_thumbnail_image" v-if="this.params.profile_thumbnail_image !== ''">
-          <img src="@/assets/baseprofile.png" alt="" v-else>
+          <img :src="this.params.profile_thumbnail_image" alt="profile" v-if="this.params.profile_thumbnail_image !== ''">
+          <img src="@/assets/baseprofile.png" alt="baseprofile" v-else>
         </div>
         <section class="profile__textarea">
           <div class="profile__name">
