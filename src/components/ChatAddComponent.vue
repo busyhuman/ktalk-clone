@@ -109,6 +109,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 30vw;
+  min-width: 250px;
   height: 60vh;
   background: white;
   position: fixed;
