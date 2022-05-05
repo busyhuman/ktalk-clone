@@ -1,5 +1,6 @@
 <template>
   <div class="chatview__container">
+    <ModalBack v-show="componentName !== ''" />
     <Nav selected="chats" />
     <div class="main" >
       <header class="header">
@@ -38,6 +39,7 @@ import Nav from '@/components/NavComponent'
 import Chat from '@/components/ChatComponent'
 import NormalList from '@/components/NormalListComponent'
 import Room from '@/components/RoomComponent'
+import ModalBack from '@/components/modal/ModalBackComponent'
 import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatView',
@@ -46,6 +48,7 @@ export default {
     Chat,
     NormalList,
     Room,
+    ModalBack,
     chatAdd: () => import('@/components/ChatAddComponent'),
   },
   data() {

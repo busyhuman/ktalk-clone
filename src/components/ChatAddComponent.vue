@@ -1,6 +1,5 @@
 <template>
   <div class="chattadd__container">
-    <ModalBack />
     <div class="main">
       <div class="header">
         <div class="title">
@@ -33,12 +32,10 @@
 <script>
 /*global Kakao*/
 import Profile from '@/components/ProfileComponent'
-import ModalBack from '@/components/modal/ModalBackComponent'
 import EventBus from '@/utils/eventBus'
 export default {
   components: {
     Profile,
-    ModalBack
   },
   data() {
     return {
