@@ -109,8 +109,9 @@ export default {
   display: flex;
   flex-direction: column;
   width: 30vw;
-  min-width: 250px;
+  min-width: 200px;
   height: 60vh;
+  min-height: 300px;
   background: white;
   position: fixed;
   z-index: 900;
@@ -179,16 +180,16 @@ export default {
       align-items: center;
       border-top: 0.5px solid gray;
       .confirm {
-        width: 20%;
-        height: 50%;
+        width: 40px;
+        height: 25px;
         margin-right: 5px;
         border: none;
         background: #FEE500;
         cursor: pointer;
       }
       .cancel {
-        width: 20%;
-        height: 50%;
+        width: 40px;
+        height: 25px;
         margin-right: 5px;
         border: none;
         cursor: pointer;
