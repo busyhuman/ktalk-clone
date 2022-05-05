@@ -360,6 +360,11 @@ export default {
       border-style: none;
       padding: 5px 10px;
       font-size: 12px;
+
+      cursor: pointer;
+      &:disabled {
+        cursor: auto;
+      }
     }
   }
 }

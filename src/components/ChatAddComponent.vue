@@ -185,7 +185,11 @@ export default {
         margin-right: 5px;
         border: none;
         background: #FEE500;
+        
         cursor: pointer;
+        &:disabled {
+          cursor: auto;
+        }
       }
       .cancel {
         width: 40px;
