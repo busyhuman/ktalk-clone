@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import * as utils from '../util'
 describe('utils 테스트', () => {
   test('isNull 테스트1', () => {
