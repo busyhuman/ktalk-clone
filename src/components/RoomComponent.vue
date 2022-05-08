@@ -58,7 +58,6 @@
 
 <script>
 /*global Kakao*/
-import EventBus from '@/utils/eventBus'
 import * as Utils from '@/utils/util'
 export default {
   name: 'RoomComponent',
@@ -78,7 +77,7 @@ export default {
     }
   },
   created() {
-    EventBus.$on('OPEN_ROOM' + this.params.rindex, () => {
+    this.$on('OPEN_ROOM' + this.params.rindex, () => {
       this.actv = true
     })
   },
@@ -113,7 +112,7 @@ export default {
             author: 'user',
             message: message,
           })
-          EventBus.$emit('ROOM' + this.params.rindex, (message))
+          this.$emit('ROOM' + this.params.rindex, (message))
         },
         fail: function(error) {
           console.log(error);
@@ -148,7 +147,7 @@ export default {
             author: 'user',
             message: message,
           })
-          EventBus.$emit('ROOM' + this.params.rindex, (message))
+          this.$emit('ROOM' + this.params.rindex, (message))
         },
         fail: function(error) {
           console.log(error);
