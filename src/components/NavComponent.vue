@@ -37,6 +37,7 @@
 
 <script>
 /*global Kakao*/
+import EventBus from '@/utils/eventBus'
 import NormalList from '@/components/NormalListComponent'
 export default {
   components: {
@@ -70,7 +71,7 @@ export default {
       ]
     }
 
-    this.$on('NORMALLIST_' + this.normalList.title, (index) => {
+    EventBus.$on('NORMALLIST_' + this.normalList.title, (index) => {
       this.normalList.itemList[index].func()
     })  
   },
@@ -113,7 +114,7 @@ export default {
     fnToggleAlarm() {
       this.componentName = 'Alarm'
       this.$store.state.toggle.alarm = !this.$store.state.toggle.alarm
-      this.$emit('ALARM', this.$store.state.toggle.alarm)
+      EventBus.$emit('ALARM', this.$store.state.toggle.alarm)
     },
 
     fnToggleSetting() {

@@ -40,6 +40,7 @@ import Chat from '@/components/ChatComponent'
 import NormalList from '@/components/NormalListComponent'
 import Room from '@/components/RoomComponent'
 import ModalBack from '@/components/modal/ModalBackComponent'
+import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatView',
   components: {
@@ -81,14 +82,14 @@ export default {
   },
   created() {
     this.fnSelectUserProfile()
-    this.$on('NORMALLIST_' + this.normalList.name, (index) => {
+    EventBus.$on('NORMALLIST_' + this.normalList.name, (index) => {
       /**
        * TODO:
        * index에 따라 채팅목록 Sort
        */
       index
     })
-    this.$on('CHATADD_CONFIRM', (item) => {
+    EventBus.$on('CHATADD_CONFIRM', (item) => {
       let name = ''
       let uuid = []
       item.forEach( (it, idx) => {
@@ -112,7 +113,7 @@ export default {
       this.componentName = ''
     })
 
-    this.$on('CHATADD_CANCEL', () => {
+    EventBus.$on('CHATADD_CANCEL', () => {
       this.componentName = ''
     })
   },
@@ -164,7 +165,7 @@ export default {
         this.roomItems.push(item);
       }
       else{
-        this.$emit('OPEN_ROOM' + item.rindex)
+        EventBus.$emit('OPEN_ROOM' + item.rindex)
       }
     },
   }

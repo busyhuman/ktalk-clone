@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus'
 export default {
   name: 'NormalList',
   props: {
@@ -23,7 +24,7 @@ export default {
   },
   methods: {
     fnOnClickItem(index) {
-      this.$emit('NORMALLIST_' + this.params.title, index)
+      EventBus.$emit('NORMALLIST_' + this.params.title, index)
     },
   }
 }

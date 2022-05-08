@@ -32,6 +32,7 @@
 <script>
 /*global Kakao*/
 import Profile from '@/components/ProfileComponent'
+import EventBus from '@/utils/eventBus'
 export default {
   components: {
     Profile,
@@ -91,13 +92,13 @@ export default {
      * 확인버튼 클릭
      */
     fnOnClickConfirm() {
-      this.$emit('CHATADD_CONFIRM', this.chosenFriendList)
+      EventBus.$emit('CHATADD_CONFIRM', this.chosenFriendList)
     },
     /**
      * 취소버튼 클릭
      */
     fnOnClickCancel() {
-      this.$emit('CHATADD_CANCEL')
+      EventBus.$emit('CHATADD_CANCEL')
     }
   }
 }

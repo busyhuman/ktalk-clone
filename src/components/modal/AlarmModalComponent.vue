@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus';
 export default {
   data() {
     return {
@@ -20,7 +21,7 @@ export default {
     }
   },
   created() {
-    this.$on('ALARM', (toggle) => {
+    EventBus.$on('ALARM', (toggle) => {
       this.toggle = toggle
       this.$refs.target.classList.remove("play")
       void this.$refs.target.offsetWidth;

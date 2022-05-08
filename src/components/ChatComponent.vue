@@ -26,13 +26,14 @@
 </template>
 
 <script>
+import EventBus from '@/utils/eventBus'
 export default {
   name: 'ChatComponent',
   props: {
     params: Object
   },
   created() {
-    this.$on('ROOM' + this.params.rindex, (message) => {
+    EventBus.$on('ROOM' + this.params.rindex, (message) => {
       this.ui.lastMessage = message
     })
   },
