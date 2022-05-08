@@ -5,7 +5,7 @@ export function log (msg) {
 }
 
 export function isNull (str) {
-  if( str === '' || str === undefined || str === null) {
+  if( str === '' || str === 'undefined' || str === 'null' || str === 'NULL') {
     return true
   }
   return false;
