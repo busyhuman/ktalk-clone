@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component [Snapshot Testing] Alarm 1`] = `undefined`;
+
+exports[`Component [Snapshot Testing] Chat 1`] = `undefined`;
+
+exports[`Component [Snapshot Testing] ModalBack 1`] = `undefined`;
+
+exports[`Component [Snapshot Testing] Nav 1`] = `undefined`;
+
+exports[`Component [Snapshot Testing] NormalList 1`] = `undefined`;
+
+exports[`Component [Snapshot Testing] Profile 1`] = `undefined`;
