@@ -30,7 +30,7 @@
 </template>
 
 <script>
-
+/*global Kakao*/
 import Profile from '@/components/ProfileComponent'
 import EventBus from '@/utils/eventBus'
 export default {

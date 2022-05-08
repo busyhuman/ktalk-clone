@@ -5,6 +5,7 @@
 </template>
 
 <script>
+/*global Kakao*/
 export default {
   data() {
     return {
