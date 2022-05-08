@@ -34,7 +34,7 @@
 </template>
 
 <script>
-/*global Kakao*/
+
 import Nav from '@/components/NavComponent'
 import Chat from '@/components/ChatComponent'
 import NormalList from '@/components/NormalListComponent'

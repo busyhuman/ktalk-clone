@@ -50,7 +50,7 @@
 </template>
 
 <script>
-/*global Kakao*/
+
 import Nav from '@/components/NavComponent'
 import Profile from '@/components/ProfileComponent'
 export default {

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-/*global Kakao*/
+
 import EventBus from '@/utils/eventBus'
 import * as Utils from '@/utils/util'
 export default {

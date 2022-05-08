@@ -36,7 +36,7 @@
 </template>
 
 <script>
-/*global Kakao*/
+
 import EventBus from '@/utils/eventBus'
 import NormalList from '@/components/NormalListComponent'
 export default {
