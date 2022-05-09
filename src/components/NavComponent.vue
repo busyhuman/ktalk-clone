@@ -11,11 +11,6 @@
           chat_bubble
         </span>
       </router-link>
-      <router-link :to="{ path: '/more' }" class="more" :class="{ actv: selected === 'more'}">
-        <span class="material-icons">
-          more_horiz
-        </span>
-      </router-link>
       <div class="alarm">
         <span class="material-icons-outlined" @click="fnToggleAlarm()" v-show="fnGetAlarm === true">
           notifications

@@ -3,10 +3,9 @@ import VueRouter from 'vue-router';
 import signin from '@/views/SignInView';
 import friends from '@/views/FriendsView';
 import chats from '@/views/ChatView';
-import more from '@/views/MoreView';
 import auth from '@/views/AuthView';
 import authmore from '@/views/AuthMoreView';
-// import NotFound from '@/views/NotFound';
+import NotFound from '@/views/NotFound';
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -41,15 +40,10 @@ export const router = new VueRouter({
       path: '/chats',
       component: chats
     },
-    {
-      name: 'more',
-      path: '/more',
-      component: more
+    { 
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
     },
-    // { 
-    //   path: '/:pathMatch(.*)*',
-    //   name: 'NotFound',
-    //   component: NotFound
-    // },
   ]
 })
