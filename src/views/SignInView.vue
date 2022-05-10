@@ -12,9 +12,7 @@
           <input type="password">
         </div> -->
         <div class="sign-in__submit">
-          <a :href="authorizeLink">
-            <button class="submit actv" type="button" >로그인</button>
-          </a>
+          <button class="submit actv" type="button" @click="fnLogin()">로그인</button>
         </div>
           <div class="auto-login no-drag">
           <input type="checkbox" id="autoLogin" :checked="autoLogin" @click="fnSetAutoLogin()">
@@ -52,7 +50,7 @@ export default {
     this.autoLogin = JSON.parse(localStorage.getItem('autoLogin'))  // JSON.parse를 해야 문자열로된 boolean값을 boolean으로 변환할 수 있다.
 
     if(this.autoLogin === true) {
-      location.href = this.authorizeLink
+      this.fnLogin()
     }
   },
   methods: {
@@ -66,6 +64,9 @@ export default {
       }
       Kakao.Auth.logout();
     },
+    fnLogin() {
+      location.href = this.authorizeLink
+    }
   }
 }
 </script>
