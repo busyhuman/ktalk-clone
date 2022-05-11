@@ -120,12 +120,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media screen and (max-height: 420px) {
+@media screen and (max-height: 360px) {
   .settings {
     display: none;
   }
 }
-@media screen and (max-height: 480px) {
+@media screen and (max-height: 420px) {
   .alarm {
     display: none;
   }
