@@ -3,7 +3,7 @@
     <div class="main">
       <div class="room">
         <div class="room__image">
-          <img src="@/assets/kakaologo.png" alt="kakao.png" loading="lazy">
+          <img src="@/assets/kakaologo.png" alt="kakao.png">
         </div>
         <section class="room__contents">
           <div class="room__title">
