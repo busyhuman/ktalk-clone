@@ -166,8 +166,6 @@ export default {
     .contents {
       width: 100%;
       margin-top: 10px;
-      overflow-y: auto;
-      overflow-x: hidden;
       .user__profile {
         padding: 10px 20px;
         .profile {
