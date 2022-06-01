@@ -35,7 +35,7 @@
           </div>
           <div class="contents">
             <div class="name">
-              이장호
+              
             </div>
             <div class="msg">
               {{ item.message }}
