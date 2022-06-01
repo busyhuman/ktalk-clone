@@ -14,7 +14,7 @@
         <div class="sign-in__submit">
           <button class="submit actv" type="button" @click="fnLogin()">로그인</button>
         </div>
-          <div class="auto-login no-drag">
+          <div class="auto-login">
           <input type="checkbox" id="autoLogin" :checked="autoLogin" @click="fnSetAutoLogin()">
           <label for="autoLogin">자동로그인</label>
           <span class="material-icons" @click="isCheckMessageShow=true">
