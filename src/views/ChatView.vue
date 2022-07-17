@@ -173,11 +173,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .chatview__container {
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+
   .main {
     display: flex;
     flex-direction: column;
@@ -190,7 +192,6 @@ export default {
       position: relative;
       left: 20px;
       .title {
-        display: flex;
         font-size: 36px;
         font-weight: 500;
         .arrow--down {
@@ -224,4 +225,9 @@ export default {
     }
   }
 }
+  // .chatview__container::v-deep .room__container {
+  //   left: 400px;
+  //   font-size: 20px;
+  //   background: black;
+  // }
 </style>

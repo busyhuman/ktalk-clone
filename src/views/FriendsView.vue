@@ -115,15 +115,13 @@ export default {
 .friendsview__container {
   display: flex;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  
+  height: 100vh; 
   .main {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    padding-top: 40px;
     padding-left: 80px; /** Navigtion width에 따라 변경해야함 */
-    width: 100%;
+    width: calc(100% - 20px);
     height: 100%;
     .header {
       display: flex;
@@ -165,6 +163,7 @@ export default {
     }
     .contents {
       width: 100%;
+      position: relative;
       margin-top: 10px;
       .user__profile {
         padding: 10px 20px;
@@ -197,11 +196,15 @@ export default {
         }
       }
       .friends {
+        position: absolute;
         width: 100%;
         .friends__title {
           position: relative;
           left: 20px;
           font-size: 11px;
+        }
+        .friend {
+          width: 100%;
         }
       }
     }
